@@ -4,6 +4,7 @@
  */
 package Clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,12 +18,11 @@ public class SharedData {
     //Constructores
     
     public SharedData() {
+        this.usuarios = new ArrayList <>();
+        this.departamentos = new ArrayList <>();
     }
 
-    public SharedData(List<Usuarios> usuarios, List<Departamentos> departamentos) {
-        this.usuarios = usuarios;
-        this.departamentos = departamentos;
-    }
+    
     
     //Getters
     public List<Usuarios> getUsuarios() {
@@ -49,6 +49,22 @@ public class SharedData {
     
     public void agregarDepartamento(Departamentos depa){
         departamentos.add(depa);
+    };
+    
+    public boolean autenticarUsuario(String usuario, String contrasena){
+        boolean verificacion = false;
+        for(int i = 0; i < usuarios.size(); i++){
+            if(usuarios.get(i).getUsuario().equals(usuario) && usuarios.get(i).getContrasena().equals(contrasena)){
+                verificacion = true;
+                
+                //Si encuentra coincidencia lo sacamos del bucle
+                i = usuarios.size();
+            }else{
+                verificacion = false;
+            };
+        };
+        
+        return verificacion;
     };
     
     

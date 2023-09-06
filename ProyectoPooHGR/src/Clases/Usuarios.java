@@ -13,7 +13,7 @@ public class Usuarios {
     private String usuario;
     private String contrasena;
     private String nombreUsuario;
-    private int dpi;
+    private long dpi;
     private int edad;
     private String cargo;
     private int telefono;
@@ -33,7 +33,7 @@ public class Usuarios {
         this.email = "";
     }
 
-    public Usuarios(String usuario, String contrasena, String nombreUsuario, int dpi, int edad, String cargo, int telefono, String departamento, String email) {
+    public Usuarios(String usuario, String contrasena, String nombreUsuario, long dpi, int edad, String cargo, int telefono, String departamento, String email) {
         this.usuario = usuario;
         this.contrasena = contrasena;
         this.nombreUsuario = nombreUsuario;
@@ -58,7 +58,7 @@ public class Usuarios {
         return nombreUsuario;
     }
 
-    public int getDpi() {
+    public long getDpi() {
         return dpi;
     }
 
@@ -95,7 +95,7 @@ public class Usuarios {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public void setDpi(int dpi) {
+    public void setDpi(long dpi) {
         this.dpi = dpi;
     }
 
