@@ -65,7 +65,5 @@ public class SharedData {
         };
         
         return verificacion;
-    };
-    
-    
-}
+    }; 
+};

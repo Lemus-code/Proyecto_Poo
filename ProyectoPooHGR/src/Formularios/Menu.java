@@ -6,6 +6,9 @@ package Formularios;
 
 import java.awt.BorderLayout;
 import Clases.*;
+import java.awt.Color;
+import static java.awt.SystemColor.menu;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -14,18 +17,26 @@ import Clases.*;
 public class Menu extends javax.swing.JFrame {
 
     private AgregarUser agUser;
-    private SharedData sharedData = new SharedData();
+    private SharedData  sharedData;
     /*
      * Creates new form Menu
      */
-    public Menu() {
+    public Menu(SharedData sharedData) {
         initComponents();
         this.agUser = new AgregarUser(sharedData);
+        this.sharedData = sharedData;
+        
     }
 
     public AgregarUser getAgUser() {
         return agUser;
     }
+
+    public SharedData getSharedData() {
+        return sharedData;
+    }
+    
+    
 
     public void setAgUser(AgregarUser agUser) {
         this.agUser = agUser;
@@ -42,49 +53,100 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         panelMenu = new javax.swing.JPanel();
+        panelPrincipal = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        menuPrincipal = new javax.swing.JMenu();
+        menuCasas = new javax.swing.JMenu();
+        menuUsuarios = new javax.swing.JMenu();
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        menuMostrar = new javax.swing.JRadioButtonMenuItem();
+        menuClientes = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelMenu.setBackground(new java.awt.Color(255, 255, 255));
 
+        panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 100)); // NOI18N
         jLabel1.setText("HGR");
+
+        jButton1.setBackground(new java.awt.Color(0, 51, 102));
+        jButton1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Cerrar Sesión");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(537, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                    .addGap(230, 230, 230)
+                    .addComponent(jLabel1)
+                    .addContainerGap(231, Short.MAX_VALUE)))
+        );
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(386, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(20, 20, 20))
+            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                    .addGap(153, 153, 153)
+                    .addComponent(jLabel1)
+                    .addContainerGap(154, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
         panelMenuLayout.setHorizontalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMenuLayout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jLabel1)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelMenuLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jLabel1)
-                .addContainerGap(157, Short.MAX_VALUE))
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 420));
+        getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 430));
 
+        jMenuBar1.setToolTipText("");
+        jMenuBar1.setBorderPainted(false);
         jMenuBar1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
 
-        jMenu1.setText("Casas");
-        jMenuBar1.add(jMenu1);
+        menuPrincipal.setText("Menu Principal");
+        menuPrincipal.setBorderPainted(false);
+        menuPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuPrincipalMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(menuPrincipal);
 
-        jMenu2.setText("Usuarios");
+        menuCasas.setText("Casas");
+        jMenuBar1.add(menuCasas);
 
+        menuUsuarios.setText("Usuarios");
+
+        jRadioButtonMenuItem1.setBackground(new java.awt.Color(0, 51, 102));
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("Agregar");
         jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,8 +154,9 @@ public class Menu extends javax.swing.JFrame {
                 jRadioButtonMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu2.add(jRadioButtonMenuItem1);
+        menuUsuarios.add(jRadioButtonMenuItem1);
 
+        jRadioButtonMenuItem2.setBackground(new java.awt.Color(0, 51, 102));
         jRadioButtonMenuItem2.setSelected(true);
         jRadioButtonMenuItem2.setText("Modificar");
         jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -101,16 +164,22 @@ public class Menu extends javax.swing.JFrame {
                 jRadioButtonMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu2.add(jRadioButtonMenuItem2);
+        menuUsuarios.add(jRadioButtonMenuItem2);
 
+        jRadioButtonMenuItem3.setBackground(new java.awt.Color(0, 51, 102));
         jRadioButtonMenuItem3.setSelected(true);
         jRadioButtonMenuItem3.setText("Eliminar");
-        jMenu2.add(jRadioButtonMenuItem3);
+        menuUsuarios.add(jRadioButtonMenuItem3);
 
-        jMenuBar1.add(jMenu2);
+        menuMostrar.setBackground(new java.awt.Color(0, 51, 102));
+        menuMostrar.setSelected(true);
+        menuMostrar.setText("Mostrar");
+        menuUsuarios.add(menuMostrar);
 
-        jMenu3.setText("Clientes");
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(menuUsuarios);
+
+        menuClientes.setText("Clientes");
+        jMenuBar1.add(menuClientes);
 
         setJMenuBar(jMenuBar1);
 
@@ -118,63 +187,51 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
-       agUser.setSize(650, 420);
-        agUser.setLocation(0,0);
+       agUser.setSize(671, 430);
         
-        panelMenu.removeAll();
-        panelMenu.add(agUser,BorderLayout.CENTER);
-        panelMenu.revalidate();
-        panelMenu.repaint(); 
+       panelMenu.removeAll();
+       panelMenu.add(agUser,BorderLayout.CENTER);
+       panelMenu.revalidate();
+       panelMenu.repaint(); 
     }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
 
     private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void menuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPrincipalMouseClicked
+        // TODO add your handling code here:
+      
+        
+       panelMenu.removeAll();
+       panelMenu.add(panelPrincipal,BorderLayout.CENTER);
+       panelMenu.revalidate();
+       panelMenu.repaint(); 
+    }//GEN-LAST:event_menuPrincipalMouseClicked
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Menu().setVisible(true);
-            }
-        });
-    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login(getSharedData());
+        this.setVisible(false);
+        login.setVisible(true);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
+    private javax.swing.JMenu menuCasas;
+    private javax.swing.JMenu menuClientes;
+    private javax.swing.JRadioButtonMenuItem menuMostrar;
+    private javax.swing.JMenu menuPrincipal;
+    private javax.swing.JMenu menuUsuarios;
     private javax.swing.JPanel panelMenu;
+    private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

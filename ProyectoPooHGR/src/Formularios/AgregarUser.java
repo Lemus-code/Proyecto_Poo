@@ -64,46 +64,64 @@ public class AgregarUser extends javax.swing.JPanel {
         label2.setName("Nuevo Usuario"); // NOI18N
         label2.setText("Nuevo Usuario");
 
+        label1.setAlignment(java.awt.Label.CENTER);
+        label1.setBackground(new java.awt.Color(0, 51, 102));
         label1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label1.setText("Contraseña:");
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("Contraseña");
 
+        label3.setAlignment(java.awt.Label.CENTER);
+        label3.setBackground(new java.awt.Color(0, 51, 102));
         label3.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label3.setText("Usuario:");
+        label3.setForeground(new java.awt.Color(255, 255, 255));
+        label3.setText("Usuario");
 
+        label4.setAlignment(java.awt.Label.CENTER);
+        label4.setBackground(new java.awt.Color(0, 51, 102));
         label4.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label4.setText("Nombre de Usuario:");
+        label4.setForeground(new java.awt.Color(255, 255, 255));
+        label4.setText("Nombre");
 
+        label5.setAlignment(java.awt.Label.CENTER);
+        label5.setBackground(new java.awt.Color(0, 51, 102));
+        label5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         label5.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label5.setText("Edad:");
+        label5.setForeground(new java.awt.Color(255, 255, 255));
+        label5.setText("Edad");
 
+        label6.setAlignment(java.awt.Label.CENTER);
+        label6.setBackground(new java.awt.Color(0, 51, 102));
         label6.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label6.setText("DPI:");
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("DPI");
 
+        label7.setAlignment(java.awt.Label.CENTER);
+        label7.setBackground(new java.awt.Color(0, 51, 102));
         label7.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label7.setText("Cargo:");
+        label7.setForeground(new java.awt.Color(255, 255, 255));
+        label7.setText("Cargo");
 
+        label8.setAlignment(java.awt.Label.CENTER);
+        label8.setBackground(new java.awt.Color(0, 51, 102));
         label8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label8.setText("Telefono:");
+        label8.setForeground(new java.awt.Color(255, 255, 255));
+        label8.setText("Telefono");
 
+        label9.setAlignment(java.awt.Label.CENTER);
+        label9.setBackground(new java.awt.Color(0, 51, 102));
         label9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label9.setText("Correo Electronico:");
+        label9.setForeground(new java.awt.Color(255, 255, 255));
+        label9.setText("Correo Electronico");
 
+        label10.setAlignment(java.awt.Label.CENTER);
+        label10.setBackground(new java.awt.Color(0, 51, 102));
         label10.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label10.setText("Departamento:");
+        label10.setForeground(new java.awt.Color(255, 255, 255));
+        label10.setText("Departamento");
 
         textUsuario.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        textUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textUsuarioActionPerformed(evt);
-            }
-        });
 
         textNomUser.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        textNomUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textNomUserActionPerformed(evt);
-            }
-        });
 
         textDPI.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
@@ -119,6 +137,7 @@ public class AgregarUser extends javax.swing.JPanel {
 
         textContra.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
+        botonAgg.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         botonAgg.setText("Agregar");
         botonAgg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,45 +150,46 @@ public class AgregarUser extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(257, 257, 257)
+                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(143, 143, 143))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGap(73, 73, 73)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, 0)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textDepar, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textNomUser, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textContra, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textDepar, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textNomUser, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textContra, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(botonAgg)
-                        .addGap(164, 164, 164)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                        .addGap(285, 285, 285)
+                        .addComponent(botonAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -185,7 +205,7 @@ public class AgregarUser extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textDPI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(label5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -206,24 +226,17 @@ public class AgregarUser extends javax.swing.JPanel {
                     .addComponent(label9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonAgg)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(botonAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 420));
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 460));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textNomUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNomUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textNomUserActionPerformed
-
-    private void textUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textUsuarioActionPerformed
 
     private void botonAggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAggActionPerformed
         String usuario, contraseña, nomUsuario, cargo, departamento, email;
-        int dpi, edad, telefono;
+        long dpi;
+        int edad, telefono;
         usuario = textUsuario.getText();
         contraseña = textContra.getText();
         nomUsuario = textNomUser.getText();
@@ -246,6 +259,7 @@ public class AgregarUser extends javax.swing.JPanel {
         textDPI.setText("");
         textEdad.setText("");
         textTelefono.setText("");
+        System.out.println(usuario + "" + contraseña + "" + nomUsuario);
     }//GEN-LAST:event_botonAggActionPerformed
 
 
