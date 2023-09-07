@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 public class Menu extends javax.swing.JFrame {
 
     private AgregarUser agUser;
+    private ModificarUserr modiUser;
     private SharedData  sharedData;
     /*
      * Creates new form Menu
@@ -24,6 +25,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu(SharedData sharedData) {
         initComponents();
         this.agUser = new AgregarUser(sharedData);
+        this.modiUser = new ModificarUserr(sharedData);
         this.sharedData = sharedData;
         
     }
@@ -60,8 +62,8 @@ public class Menu extends javax.swing.JFrame {
         menuPrincipal = new javax.swing.JMenu();
         menuCasas = new javax.swing.JMenu();
         menuUsuarios = new javax.swing.JMenu();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        menuAgregar = new javax.swing.JRadioButtonMenuItem();
+        menuModificar = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
         menuMostrar = new javax.swing.JRadioButtonMenuItem();
         menuClientes = new javax.swing.JMenu();
@@ -123,7 +125,7 @@ public class Menu extends javax.swing.JFrame {
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 430));
@@ -146,25 +148,25 @@ public class Menu extends javax.swing.JFrame {
 
         menuUsuarios.setText("Usuarios");
 
-        jRadioButtonMenuItem1.setBackground(new java.awt.Color(0, 51, 102));
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("Agregar");
-        jRadioButtonMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuAgregar.setBackground(new java.awt.Color(0, 51, 102));
+        menuAgregar.setSelected(true);
+        menuAgregar.setText("Agregar");
+        menuAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem1ActionPerformed(evt);
+                menuAgregarActionPerformed(evt);
             }
         });
-        menuUsuarios.add(jRadioButtonMenuItem1);
+        menuUsuarios.add(menuAgregar);
 
-        jRadioButtonMenuItem2.setBackground(new java.awt.Color(0, 51, 102));
-        jRadioButtonMenuItem2.setSelected(true);
-        jRadioButtonMenuItem2.setText("Modificar");
-        jRadioButtonMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuModificar.setBackground(new java.awt.Color(0, 51, 102));
+        menuModificar.setSelected(true);
+        menuModificar.setText("Modificar");
+        menuModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonMenuItem2ActionPerformed(evt);
+                menuModificarActionPerformed(evt);
             }
         });
-        menuUsuarios.add(jRadioButtonMenuItem2);
+        menuUsuarios.add(menuModificar);
 
         jRadioButtonMenuItem3.setBackground(new java.awt.Color(0, 51, 102));
         jRadioButtonMenuItem3.setSelected(true);
@@ -186,18 +188,24 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButtonMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem1ActionPerformed
+    private void menuAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgregarActionPerformed
        agUser.setSize(671, 430);
         
        panelMenu.removeAll();
        panelMenu.add(agUser,BorderLayout.CENTER);
        panelMenu.revalidate();
        panelMenu.repaint(); 
-    }//GEN-LAST:event_jRadioButtonMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuAgregarActionPerformed
 
-    private void jRadioButtonMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItem2ActionPerformed
+    private void menuModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonMenuItem2ActionPerformed
+        modiUser.setSize(671, 430);
+        
+        panelMenu.removeAll();
+        panelMenu.add(modiUser,BorderLayout.CENTER);
+        panelMenu.revalidate();
+        panelMenu.repaint();   
+    }//GEN-LAST:event_menuModificarActionPerformed
 
     private void menuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPrincipalMouseClicked
         // TODO add your handling code here:
@@ -214,7 +222,7 @@ public class Menu extends javax.swing.JFrame {
         Login login = new Login(getSharedData());
         this.setVisible(false);
         login.setVisible(true);
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -223,11 +231,11 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
+    private javax.swing.JRadioButtonMenuItem menuAgregar;
     private javax.swing.JMenu menuCasas;
     private javax.swing.JMenu menuClientes;
+    private javax.swing.JRadioButtonMenuItem menuModificar;
     private javax.swing.JRadioButtonMenuItem menuMostrar;
     private javax.swing.JMenu menuPrincipal;
     private javax.swing.JMenu menuUsuarios;
