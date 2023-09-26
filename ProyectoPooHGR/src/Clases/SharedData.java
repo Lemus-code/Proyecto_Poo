@@ -19,7 +19,7 @@ public class SharedData {
     
     public SharedData() {
         this.usuarios = new ArrayList <>();
-        this.departamentos = new ArrayList <>();
+        this.departamentos = new ArrayList <>();    
     }
 
     
