@@ -36,10 +36,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         setImageUsuario();
         setImageCasa();
         setImageMenu();
-        
-        
-        
     }
+
+    public SharedData getSharedData() {
+        return sharedData;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,7 +54,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jCheckBox1 = new javax.swing.JCheckBox();
-        jPanel1 = new javax.swing.JPanel();
+        panelDinamico = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanelCasas = new javax.swing.JPanel();
         btnCasas = new javax.swing.JButton();
@@ -72,8 +75,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jCheckBox1.setText("jCheckBox1");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelDinamico.setBackground(new java.awt.Color(255, 255, 255));
+        panelDinamico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -330,26 +333,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 100)); // NOI18N
         jLabel1.setText("HGR");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelDinamicoLayout = new javax.swing.GroupLayout(panelDinamico);
+        panelDinamico.setLayout(panelDinamicoLayout);
+        panelDinamicoLayout.setHorizontalGroup(
+            panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDinamicoLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(171, 171, 171)
+                .addGap(177, 177, 177)
                 .addComponent(jLabel1)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelDinamicoLayout.setVerticalGroup(
+            panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDinamicoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(187, 187, 187))
         );
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(panelDinamico, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
@@ -370,6 +373,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSesionActionPerformed
         // TODO add your handling code here:
+        Login login = new Login(getSharedData());
+        this.setVisible(false);
+        login.setVisible(true);
     }//GEN-LAST:event_btnSesionActionPerformed
 
     private void btnSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSesionMouseExited
@@ -386,6 +392,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         // TODO add your handling code here:
+        UsuariosLandingPage usuariosPage = new UsuariosLandingPage(getSharedData());
+        this.setVisible(false);
+        usuariosPage.setVisible(true);
+        
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
@@ -499,12 +509,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMenu;
     private javax.swing.JLabel jLabelSesion;
     private javax.swing.JLabel jLabelUsers;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelCasas;
     private javax.swing.JPanel jPanelClientes;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelSesion;
     private javax.swing.JPanel jPanelUsuarios;
+    public javax.swing.JPanel panelDinamico;
     // End of variables declaration//GEN-END:variables
 }

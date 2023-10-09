@@ -6,26 +6,45 @@
 package Formularios;
 import Clases.*;
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Familia
  */
-public class ModificarUserr extends javax.swing.JPanel {
+public class ModificarUserr extends javax.swing.JFrame {
     private SharedData sharedData;
+    private String usuario;
     /**
      * Creates new form ModificarUserr
      */
-    public ModificarUserr(SharedData sharedData) {
+    public ModificarUserr(SharedData sharedData, String usuario) {
         initComponents();
+        this.setSize(671, 480);
         //Ocultamos los texField,  mensaje de aviso y btn aceptar
-        panelTextFields.setVisible(false);
-        lbAviso.setVisible(false);
+        panelTextFields.setVisible(true);
         btnAceptar.setVisible(false);
         btnCancelar.setVisible(false);
+       
         
         //Iniciar Atributos
         this.sharedData = sharedData;
+        this.usuario = usuario;
+        
+        //MostramosDatos
+         mostrarDatos();
     }
+
+    public SharedData getSharedData() {
+        return sharedData;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+    
+    
+    
+    
 
     public void bloquearTextFields(){
         textUsuario.setEnabled(false);               
@@ -52,8 +71,6 @@ public class ModificarUserr extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         label2 = new java.awt.Label();
-        txtFieldBuscar = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
         panelTextFields = new javax.swing.JPanel();
         label5 = new java.awt.Label();
         label9 = new java.awt.Label();
@@ -72,13 +89,13 @@ public class ModificarUserr extends javax.swing.JPanel {
         label4 = new java.awt.Label();
         label8 = new java.awt.Label();
         textEdad = new java.awt.TextField();
-        textContra = new java.awt.TextField();
         btnModificarAgg = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        lbAviso = new javax.swing.JLabel();
+        textContra = new javax.swing.JPasswordField();
+        btnRegresar = new javax.swing.JButton();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -87,19 +104,6 @@ public class ModificarUserr extends javax.swing.JPanel {
         label2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
         label2.setName("Nuevo Usuario"); // NOI18N
         label2.setText("Modificar Usuario");
-
-        txtFieldBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        txtFieldBuscar.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-
-        btnBuscar.setBackground(new java.awt.Color(0, 51, 102));
-        btnBuscar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
 
         panelTextFields.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -175,8 +179,6 @@ public class ModificarUserr extends javax.swing.JPanel {
 
         textEdad.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
-        textContra.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-
         btnModificarAgg.setBackground(new java.awt.Color(0, 51, 102));
         btnModificarAgg.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificarAgg.setForeground(new java.awt.Color(255, 255, 255));
@@ -207,6 +209,14 @@ public class ModificarUserr extends javax.swing.JPanel {
             }
         });
 
+        textContra.setBackground(new java.awt.Color(255, 255, 255));
+        textContra.setForeground(new java.awt.Color(0, 0, 0));
+        textContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textContraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelTextFieldsLayout = new javax.swing.GroupLayout(panelTextFields);
         panelTextFields.setLayout(panelTextFieldsLayout);
         panelTextFieldsLayout.setHorizontalGroup(
@@ -227,21 +237,25 @@ public class ModificarUserr extends javax.swing.JPanel {
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(panelTextFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textDepar, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNomUser, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textContra, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelTextFieldsLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(btnModificarAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(56, 56, 56))
+                        .addGroup(panelTextFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textDepar, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textDPI, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textNomUser, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelTextFieldsLayout.createSequentialGroup()
+                                .addGap(76, 76, 76)
+                                .addComponent(btnModificarAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(56, 56, 56))
+                    .addGroup(panelTextFieldsLayout.createSequentialGroup()
+                        .addComponent(textContra, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelTextFieldsLayout.setVerticalGroup(
             panelTextFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,47 +305,47 @@ public class ModificarUserr extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        lbAviso.setForeground(new java.awt.Color(0, 0, 0));
-        lbAviso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbAviso.setText("Usuario no encontrado");
+        btnRegresar.setBackground(new java.awt.Color(0, 51, 102));
+        btnRegresar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lbAviso, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, 0)
-                                .addComponent(btnBuscar)))
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(187, 187, 187))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 8, Short.MAX_VALUE)
                         .addComponent(panelTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtFieldBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addComponent(lbAviso)
-                .addGap(1, 1, 1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50)
                 .addComponent(panelTextFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 460));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 460));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarAggActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarAggActionPerformed
@@ -349,23 +363,14 @@ public class ModificarUserr extends javax.swing.JPanel {
         btnModificarAgg.setVisible(false);
         btnCancelar.setVisible(true);
     }//GEN-LAST:event_btnModificarAggActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        String usuarioBuscar = txtFieldBuscar.getText();
-        boolean condi = false;
-        btnCancelar.setVisible(false);
+    private void mostrarDatos(){
+        bloquearTextFields();
         
-        //Recorremos la lista Usuarios y si encuentra entonces mostramos su información blocked
         for(int i = 0; i < sharedData.getUsuarios().size(); i++){
-            if(usuarioBuscar.equals(sharedData.getUsuarios().get(i).getUsuario())){
-                //Mostramos panel y aviso
-                panelTextFields.setVisible(true);
-                lbAviso.setVisible(false);
-                
+            if(getUsuario().equals(sharedData.getUsuarios().get(i).getUsuario())){
                 //Extraemos y bloqueamos
                 textUsuario.setText(sharedData.getUsuarios().get(i).getUsuario());
-                textContra.setText(sharedData.getUsuarios().get(i).getContrasena());
+                textContra.setText(sharedData.getUsuarios().get(i).getContrasenaOfuscada());
                 textNomUser.setText(sharedData.getUsuarios().get(i).getNombreUsuario());
                 textDPI.setText(String.valueOf(sharedData.getUsuarios().get(i).getDpi()));
                 textEdad.setText(String.valueOf(sharedData.getUsuarios().get(i).getEdad()));
@@ -376,46 +381,41 @@ public class ModificarUserr extends javax.swing.JPanel {
                 
                 bloquearTextFields();
                 btnModificarAgg.setVisible(true);
-                condi= true;
-            }
-        };
-        
-        //Si encontró user, no se ejecuta, si no encuentra si
-        if(condi == false){
-                lbAviso.setText("Usuario no encontrado");
-                lbAviso.setVisible(true);
-                panelTextFields.setVisible(false);
-                txtFieldBuscar.setText("");
-        };
-        
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
-        String usuarioBuscar = txtFieldBuscar.getText();
-        //Recorremos la lista Usuarios y si encuentra entonces mostramos su información blocked
-        for(int i = 0; i < sharedData.getUsuarios().size(); i++){
-            if(usuarioBuscar.equals(sharedData.getUsuarios().get(i).getUsuario())){
-                //Actualizamos
-                sharedData.getUsuarios().get(i).setUsuario(textUsuario.getText());
-                sharedData.getUsuarios().get(i).setContrasena(textContra.getText());
-                sharedData.getUsuarios().get(i).setNombreUsuario(textNomUser.getText());
-                sharedData.getUsuarios().get(i).setDpi(Integer.parseInt(textDPI.getText()));
-                sharedData.getUsuarios().get(i).setEdad(Integer.parseInt(textEdad.getText()));
-                sharedData.getUsuarios().get(i).setCargo(textCargo.getText());
-                sharedData.getUsuarios().get(i).setTelefono(Integer.parseInt(textTelefono.getText()));
-                sharedData.getUsuarios().get(i).setDepartamento(textDepar.getText());
-                sharedData.getUsuarios().get(i).setEmail(textEmail.getText());
-                System.out.println("Nombre: " + sharedData.getUsuarios().get(i).getUsuario() + "\n" + "Email: " + sharedData.getUsuarios().get(i).getEmail());
+            }else{
+                System.out.println("No jala");
+                System.out.println(usuario);
             };
         };
-        btnAceptar.setVisible(false);
-        btnCancelar.setVisible(false);
-        btnModificarAgg.setVisible(false);
-        panelTextFields.setVisible(false);
-        txtFieldBuscar.setText("");
-        lbAviso.setVisible(true);
-        lbAviso.setText("Cambio Exitoso");
+        
+    };
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        try{
+        //Recorremos la lista Usuarios y si encuentra entonces mostramos su información blocked
+            for(int i = 0; i < sharedData.getUsuarios().size(); i++){
+                if(getUsuario().equals(sharedData.getUsuarios().get(i).getUsuario())){
+                    //Actualizamos
+                    sharedData.getUsuarios().get(i).setUsuario(textUsuario.getText());
+                    sharedData.getUsuarios().get(i).setContrasena(textContra.getText());
+                    sharedData.getUsuarios().get(i).setNombreUsuario(textNomUser.getText());
+                    sharedData.getUsuarios().get(i).setDpi(Integer.parseInt(textDPI.getText()));
+                    sharedData.getUsuarios().get(i).setEdad(Integer.parseInt(textEdad.getText()));
+                    sharedData.getUsuarios().get(i).setCargo(textCargo.getText());
+                    sharedData.getUsuarios().get(i).setTelefono(Integer.parseInt(textTelefono.getText()));
+                    sharedData.getUsuarios().get(i).setDepartamento(textDepar.getText());
+                    sharedData.getUsuarios().get(i).setEmail(textEmail.getText());
+                    System.out.println("Nombre: " + sharedData.getUsuarios().get(i).getUsuario() + "\n" + "Email: " + sharedData.getUsuarios().get(i).getEmail());
+                };
+            };
+            btnAceptar.setVisible(false);
+            btnCancelar.setVisible(false);
+            btnModificarAgg.setVisible(false);
+            mostrarDatos();
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ingrese valores válidos en los campos numéricos", "Error",JOptionPane.ERROR_MESSAGE);
+        };
+        
+        
      
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -425,16 +425,16 @@ public class ModificarUserr extends javax.swing.JPanel {
         btnModificarAgg.setVisible(true);
         btnCancelar.setVisible(false);
         
-        String usuarioBuscar = txtFieldBuscar.getText();
+        
         for(int i = 0; i < sharedData.getUsuarios().size(); i++){
-            if(usuarioBuscar.equals(sharedData.getUsuarios().get(i).getUsuario())){
+            if(getUsuario().equals(sharedData.getUsuarios().get(i).getUsuario())){
                 //Mostramos panel y aviso
                 panelTextFields.setVisible(true);
-                lbAviso.setVisible(false);
+               
                 
                 //Extraemos y bloqueamos
                 textUsuario.setText(sharedData.getUsuarios().get(i).getUsuario());
-                textContra.setText(sharedData.getUsuarios().get(i).getContrasena());
+                textContra.setText(sharedData.getUsuarios().get(i).getContrasenaOfuscada());
                 textNomUser.setText(sharedData.getUsuarios().get(i).getNombreUsuario());
                 textDPI.setText(String.valueOf(sharedData.getUsuarios().get(i).getDpi()));
                 textEdad.setText(String.valueOf(sharedData.getUsuarios().get(i).getEdad()));
@@ -449,12 +449,23 @@ public class ModificarUserr extends javax.swing.JPanel {
         };
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        UsuariosLandingPage usuariosPage = new UsuariosLandingPage(getSharedData());
+        this.setVisible(false);
+        usuariosPage.setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void textContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textContraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnModificarAgg;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
     private java.awt.Label label10;
@@ -466,10 +477,9 @@ public class ModificarUserr extends javax.swing.JPanel {
     private java.awt.Label label7;
     private java.awt.Label label8;
     private java.awt.Label label9;
-    private javax.swing.JLabel lbAviso;
     private javax.swing.JPanel panelTextFields;
     private java.awt.TextField textCargo;
-    private java.awt.TextField textContra;
+    private javax.swing.JPasswordField textContra;
     private java.awt.TextField textDPI;
     private java.awt.TextField textDepar;
     private java.awt.TextField textEdad;
@@ -477,6 +487,5 @@ public class ModificarUserr extends javax.swing.JPanel {
     private java.awt.TextField textNomUser;
     private java.awt.TextField textTelefono;
     private java.awt.TextField textUsuario;
-    private javax.swing.JTextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }

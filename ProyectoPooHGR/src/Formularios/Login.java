@@ -53,6 +53,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         panelDinamico.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -162,16 +163,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(267, 267, 267))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(panelDinamico, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -240,11 +232,15 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                
-                //Creamos objeto
-                Usuarios user1 = new Usuarios("Admin", "1234", "Alberto González", 298877007, 12,"Administrador", 12345567,"Administración", "albertogonza@gmail.com" );
-               //Añadimos a clase shareData
+                //Creamos objetos
+                Usuarios user1 = new Usuarios("Admin", "1234", "Alberto González", 298877007, 40,"Administrador", 12345567,"Administración", "albertogonza@gmail.com" );
+                Usuarios user2 = new Usuarios("EnriqueGonzales", "12345", "Enrique González", 12312317, 21,"Contador", 12345567,"Administración", "enriqueGonza@gmail.com" );
+                Usuarios user3 = new Usuarios("diegof", "12345", "Diego Solis", 212412, 19,"Albañil", 12345567,"Construcción", "diegoSolis@gmail.com" );
+                //Añadimos a clase shareData
                 SharedData data1 = new SharedData();
                 data1.agregarUsuarios(user1);
+                data1.agregarUsuarios(user2);
+                 data1.agregarUsuarios(user3);
                 new Login(data1).setVisible(true);
                 
             }

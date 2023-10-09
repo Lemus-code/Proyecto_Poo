@@ -118,4 +118,13 @@ public class Usuarios {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    //Contraseña oculta
+    public String getContrasenaOfuscada() {
+        String contrasenaOfuscada = "";
+        for (int i = 0; i < contrasena.length(); i++) {
+            contrasenaOfuscada += "*";
+        }
+        return contrasenaOfuscada;
+    }
 };
