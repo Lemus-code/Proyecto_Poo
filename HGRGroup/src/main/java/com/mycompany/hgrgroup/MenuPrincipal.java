@@ -103,7 +103,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabelCasas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelCasas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/casa.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelCasasLayout = new javax.swing.GroupLayout(jPanelCasas);
         jPanelCasas.setLayout(jPanelCasasLayout);
@@ -284,7 +283,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabelMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Logout1.png"))); // NOI18N
+        jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
         jPanelMenu.setLayout(jPanelMenuLayout);
@@ -446,7 +445,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCasasMouseEntered
     //Método para colocar imagen, da error los jLabel, por eso se tuvo que hacer cada uno manual
     private void setImageSesion(){
-        Icon iconoImagen = new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/Logout.png")).getImage().getScaledInstance(40,40, 0));
+        Icon iconoImagen = new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/Logout1.png")).getImage().getScaledInstance(40,40, 0));
         jLabelSesion.setIcon(iconoImagen);
     };
     

@@ -31,7 +31,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.sharedData = sharedData;
         
         
-        setImageSesion();
+        //setImageSesion();
         setImageCliente();
         setImageUsuario();
         setImageCasa();
@@ -240,6 +240,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabelSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logout.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelSesionLayout = new javax.swing.GroupLayout(jPanelSesion);
         jPanelSesion.setLayout(jPanelSesionLayout);
