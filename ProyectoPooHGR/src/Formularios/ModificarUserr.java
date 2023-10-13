@@ -381,10 +381,7 @@ public class ModificarUserr extends javax.swing.JFrame {
                 
                 bloquearTextFields();
                 btnModificarAgg.setVisible(true);
-            }else{
-                System.out.println("No jala");
-                System.out.println(usuario);
-            };
+            }
         };
         
     };
