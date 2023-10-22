@@ -4,13 +4,12 @@
  */
 package com.mycompany.hgrgroup;
 import Clases.*;
-/**
- *
- * @author Diego Lemus
- */
-import Clases.SharedData;
-import Clases.Usuarios;
 import java.awt.BorderLayout;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Login extends javax.swing.JFrame {
     private SharedData shareData;
     /**
@@ -18,6 +17,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login(SharedData shareData) {
         initComponents();
+        this.setSize(800,800);
         lbMensaje.setVisible(false);
         this.shareData = shareData;
     }
@@ -53,7 +53,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        getContentPane().setLayout(new java.awt.CardLayout());
 
         panelDinamico.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -141,14 +140,14 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDinamicoLayout.createSequentialGroup()
                         .addComponent(bntIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(126, 126, 126)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelDinamicoLayout.setVerticalGroup(
             panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDinamicoLayout.createSequentialGroup()
-                .addGap(131, 275, Short.MAX_VALUE)
+                .addContainerGap(275, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFieldUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +162,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(267, 267, 267))
         );
 
-        getContentPane().add(panelDinamico, "card2");
+        getContentPane().add(panelDinamico, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -232,15 +231,42 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                
-                //Creamos objetos
+                //Instancias Usuarios
                 Usuarios user1 = new Usuarios("Admin", "1234", "Alberto González", 298877007, 40,"Administrador", 12345567,"Administración", "albertogonza@gmail.com" );
                 Usuarios user2 = new Usuarios("EnriqueGonzales", "12345", "Enrique González", 12312317, 21,"Contador", 12345567,"Administración", "enriqueGonza@gmail.com" );
                 Usuarios user3 = new Usuarios("diegof", "12345", "Diego Solis", 212412, 19,"Albañil", 12345567,"Construcción", "diegoSolis@gmail.com" );
+                
+                //Fechas
+                LocalDate fechaEntrega = LocalDate.of(2023, 12, 31); // Año, mes, día
+                
+                 // Definir un formato personalizado
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+                // Formatear la fecha según el formato personalizado
+                String fechaFormateada = fechaEntrega.format(formatter);
+        
+                // Imprimir la fecha formateada
+                System.out.println(fechaFormateada);
+                
+                //Instancias de Casas
+                List<Modificaciones> list = new ArrayList<>();
+                List<Adons> adons = new ArrayList<>();
+                
+                
+                Casas casa1 = new Casas("Roberto Gonzales", "MAR100100", "Segundo Nivel", 300000.0, 0.0, 0.0,300000.0, list, adons, fechaEntrega);
+                
+                //Instancias Clientes
+                List<Casas> casasClient1 = new ArrayList<>();
+                casasClient1.add(casa1);
+                // Clientes client1 = new Clientes();
                 //Añadimos a clase shareData
                 SharedData data1 = new SharedData();
                 data1.agregarUsuarios(user1);
                 data1.agregarUsuarios(user2);
-                 data1.agregarUsuarios(user3);
+                data1.agregarUsuarios(user3);
+                
+                data1.agregarCasa(casa1);
+                
                 new Login(data1).setVisible(true);
                 
             }

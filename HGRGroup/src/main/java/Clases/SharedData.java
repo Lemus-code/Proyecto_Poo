@@ -14,12 +14,13 @@ import java.util.List;
 public class SharedData {
     private List<Usuarios> usuarios;
     private List<Departamentos> departamentos;
-
+    private List<Casas> casas;
     //Constructores
     
     public SharedData() {
         this.usuarios = new ArrayList <>();
         this.departamentos = new ArrayList <>();    
+        this.casas = new ArrayList <>();    
     }
 
     
@@ -33,6 +34,10 @@ public class SharedData {
         return departamentos;
     }
     
+     public List<Casas> getCasas() {
+        return casas;
+    }
+    
     //Setters
     public void setUsuarios(List<Usuarios> usuarios) {
         this.usuarios = usuarios;
@@ -40,6 +45,10 @@ public class SharedData {
 
     public void setDepartamentos(List<Departamentos> departamentos) {
         this.departamentos = departamentos;
+    }
+    
+    public void setCasas(List<Casas> casas) {
+        this.casas = casas;
     }
     
     //Métodos
@@ -51,6 +60,9 @@ public class SharedData {
         departamentos.add(depa);
     };
     
+    public void agregarCasa(Casas casa){
+        casas.add(casa);
+    };
     public boolean autenticarUsuario(String usuario, String contrasena){
         boolean verificacion = false;
         for(int i = 0; i < usuarios.size(); i++){

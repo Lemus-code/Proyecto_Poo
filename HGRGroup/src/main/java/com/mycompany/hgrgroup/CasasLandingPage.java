@@ -4,20 +4,53 @@
  * and open the template in the editor.
  */
 package com.mycompany.hgrgroup;
-
+import Clases.*;
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Familia
  */
 public class CasasLandingPage extends javax.swing.JFrame {
-
+    private SharedData shareData;
+    private DefaultTableModel modelo;
     /**
      * Creates new form CasasLandingPage
      */
-    public CasasLandingPage() {
+    public CasasLandingPage(SharedData data) {
         initComponents();
+        this.shareData = data;
+        this.modelo = new DefaultTableModel();
+        transparencia(btnRegresar);
+        this.setSize(1520, 480);
+        
+        
+        //Columnas
+        modelo.addColumn("Cliente");
+        modelo.addColumn("Código");
+        modelo.addColumn("Fase Construcción");
+        modelo.addColumn("Costo Base");
+        modelo.addColumn("Costo Modificaciones");
+        modelo.addColumn("Modificaciones (Cantidad)");
+        modelo.addColumn("Costo Adons");
+        modelo.addColumn("Adons (Cantidad)");
+        modelo.addColumn("Costo Final");
+        modelo.addColumn("Fecha Entrega");
+        mostrarCasas();
+        
+        jTablaCasas.setModel(modelo);
+        //Desactivar edición
+        desactivarCeldas();
+        
     }
 
+    public SharedData getSharedData() {
+        return shareData;
+    }
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,11 +62,13 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablaCasas = new javax.swing.JTable();
         label2 = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
         label3 = new java.awt.Label();
+        jPanelRegresar = new javax.swing.JPanel();
+        btnRegresar = new javax.swing.JButton();
+        jLabelRegresar = new javax.swing.JLabel();
         textField1 = new java.awt.TextField();
         jButton6 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -48,16 +83,11 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablaCasas.setBackground(new java.awt.Color(255, 255, 255));
+        jTablaCasas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTablaCasas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Cliente", "Código Casa", "Fax", "Costo", "Modificaciones ", "Fecha Entrega"
@@ -71,9 +101,12 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTablaCasas);
+        if (jTablaCasas.getColumnModel().getColumnCount() > 0) {
+            jTablaCasas.getColumnModel().getColumn(1).setPreferredWidth(10);
+        }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 560, 170));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 1360, 260));
 
         label2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         label2.setForeground(new java.awt.Color(255, 255, 255));
@@ -83,20 +116,65 @@ public class CasasLandingPage extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton7.setBackground(new java.awt.Color(0, 51, 102));
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Regresar");
-        jPanel4.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 140, 40));
-
         label3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         label3.setForeground(new java.awt.Color(255, 255, 255));
         label3.setText("CASAS");
-        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, 20));
+        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 20));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 450));
+        jPanelRegresar.setBackground(new java.awt.Color(0, 51, 102));
+
+        btnRegresar.setBackground(new java.awt.Color(0, 51, 102));
+        btnRegresar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresar.setText("Regresar");
+        btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnRegresarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRegresarMouseExited(evt);
+            }
+        });
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
+        jLabelRegresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanelRegresarLayout = new javax.swing.GroupLayout(jPanelRegresar);
+        jPanelRegresar.setLayout(jPanelRegresarLayout);
+        jPanelRegresarLayout.setHorizontalGroup(
+            jPanelRegresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegresarLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelRegresar)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanelRegresarLayout.setVerticalGroup(
+            jPanelRegresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegresarLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanelRegresarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelRegresar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel4.add(jPanelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 60));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 460));
+
+        textField1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jPanel1.add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 126, 250, 23));
 
         jButton6.setBackground(new java.awt.Color(0, 51, 102));
+        jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Buscar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +185,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 126, -1, -1));
 
         jButton3.setBackground(new java.awt.Color(0, 51, 102));
+        jButton3.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Agregar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -117,16 +196,24 @@ public class CasasLandingPage extends javax.swing.JFrame {
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
 
         jButton4.setBackground(new java.awt.Color(0, 51, 102));
+        jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Modificar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, 32));
 
         jButton5.setBackground(new java.awt.Color(0, 51, 102));
+        jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Eliminar");
         jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 81, 32));
 
         jButton2.setBackground(new java.awt.Color(0, 51, 102));
+        jButton2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Mostrar Todo");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 85, -1, 31));
@@ -135,20 +222,47 @@ public class CasasLandingPage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void transparencia(JButton btn){
+        btn.setOpaque(false);
+        btn.setContentAreaFilled(false);
+        btn.setBorderPainted(false);
+    };
+    
+    private void desactivarCeldas(){
+        for (int i = 0; i < modelo.getColumnCount(); i++) {
+            Class<?> colClass = modelo.getColumnClass(i); //Toma el tipo de dato que tiene una columna, por eso el genérico
+            this.jTablaCasas.setDefaultEditor(colClass, null); // Esto deshabilita la edición
+        }
+    };
+     
+    private void mostrarCasas(){   
+        modelo.setRowCount(0);
+        for(int i = 0; i < shareData.getCasas().size(); i++){
+            String [] row = new String[10];
+            row[0] = shareData.getCasas().get(i).getNombreCliente();
+            row[1] = shareData.getCasas().get(i).getCodigo();
+            row[2] = shareData.getCasas().get(i).getFaseConstru();
+            row[3] = String.valueOf(shareData.getCasas().get(i).getCostoBase());
+            row[4] = String.valueOf(shareData.getCasas().get(i).getCostoModificaciones());
+            row[5] = String.valueOf(shareData.getCasas().get(i).getModificaciones().size());
+            row[6] = String.valueOf(shareData.getCasas().get(i).getCostoAdons());
+            row[7] = String.valueOf(shareData.getCasas().get(i).getAdons().size());
+            row[8] = String.valueOf(shareData.getCasas().get(i).getCostoFinal());
+            row[9] = String.valueOf(shareData.getCasas().get(i).getFechaEntrega());
+            modelo.addRow(row);
+        };
+    } 
+    
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -157,19 +271,54 @@ public class CasasLandingPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void btnRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseEntered
+        Color colorRgb= new Color(0, 102, 204);
+        jPanelRegresar.setBackground(colorRgb);
+    }//GEN-LAST:event_btnRegresarMouseEntered
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal menu = new MenuPrincipal(getSharedData());
+        this.setVisible(false);
+        menu.setVisible(true);
+        
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnRegresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseExited
+        // TODO add your handling code here:
+        Color colorRgb= new Color(0,51,102);
+        jPanelRegresar.setBackground(colorRgb);
+    }//GEN-LAST:event_btnRegresarMouseExited
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int fila = jTablaCasas.getSelectedRow();
+        try{
+            Object valor = jTablaCasas.getValueAt(fila,0);
+            ModificarCasa modiPage = new ModificarCasa(getSharedData(), (String) valor); //Convierto valor a String
+            modiPage.setVisible(true);
+            this.setVisible(false);
+            
+        }catch(Exception e){
+             JOptionPane.showMessageDialog(null, "Seleccione una fila para modificar", "Error",JOptionPane.ERROR_MESSAGE);
+        };
+    }//GEN-LAST:event_jButton4ActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablaCasas;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.TextField textField1;

@@ -8,12 +8,12 @@ package com.mycompany.hgrgroup;
  *
  * @author Familia
  */
-public class Casas extends javax.swing.JFrame {
+public class ModificacionesCasas extends javax.swing.JFrame {
 
     /**
      * Creates new form Casas
      */
-    public Casas() {
+    public ModificacionesCasas() {
         initComponents();
     }
 

@@ -31,11 +31,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.sharedData = sharedData;
         
         
-        //setImageSesion();
-        //setImageCliente();
-        //setImageUsuario();
-        //setImageCasa();
-        //setImageMenu();
+        
     }
 
     public SharedData getSharedData() {
@@ -103,6 +99,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabelCasas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCasas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/casa.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelCasasLayout = new javax.swing.GroupLayout(jPanelCasas);
         jPanelCasas.setLayout(jPanelCasasLayout);
@@ -149,6 +146,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabelClientes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/cliente.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelClientesLayout = new javax.swing.GroupLayout(jPanelClientes);
         jPanelClientes.setLayout(jPanelClientesLayout);
@@ -194,6 +192,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabelUsers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelUsers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/gestion.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelUsuariosLayout = new javax.swing.GroupLayout(jPanelUsuarios);
         jPanelUsuarios.setLayout(jPanelUsuariosLayout);
@@ -240,6 +239,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabelSesion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Logout1.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelSesionLayout = new javax.swing.GroupLayout(jPanelSesion);
         jPanelSesion.setLayout(jPanelSesionLayout);
@@ -283,7 +283,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
 
         jLabelMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu.png"))); // NOI18N
+        jLabelMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/menu.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelMenuLayout = new javax.swing.GroupLayout(jPanelMenu);
         jPanelMenu.setLayout(jPanelMenuLayout);
@@ -340,9 +340,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDinamicoLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(177, 177, 177)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGap(170, 170, 170))
         );
         panelDinamicoLayout.setVerticalGroup(
             panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,7 +350,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDinamicoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(187, 187, 187))
+                .addGap(174, 174, 174))
         );
 
         getContentPane().add(panelDinamico, java.awt.BorderLayout.CENTER);
@@ -413,6 +413,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         // TODO add your handling code here:
+        InformacionClientes  infoClientes = new InformacionClientes(getSharedData());
+        this.setVisible(false);
+        infoClientes.setVisible(true);
     }//GEN-LAST:event_btnClientesActionPerformed
 
     private void btnClientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnClientesMouseExited
@@ -429,6 +432,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnCasasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCasasActionPerformed
         // TODO add your handling code here:
+        CasasLandingPage landingCasa = new CasasLandingPage(getSharedData());
+        this.setVisible(false);
+        landingCasa.setVisible(true);
     }//GEN-LAST:event_btnCasasActionPerformed
 
     private void btnCasasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCasasMouseExited
@@ -443,35 +449,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanelCasas.setBackground(colorRgb);
 
     }//GEN-LAST:event_btnCasasMouseEntered
-    //Método para colocar imagen, da error los jLabel, por eso se tuvo que hacer cada uno manual
-    private void setImageSesion(){
-        Icon iconoImagen = new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/Logout1.png")).getImage().getScaledInstance(40,40, 0));
-        jLabelSesion.setIcon(iconoImagen);
-    };
-    
-    
-    private void setImageCliente(){
-        Icon iconoImagen = new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/cliente.png")).getImage().getScaledInstance(40,40, 0));
-        jLabelClientes.setIcon(iconoImagen);  
-    };
-     
-    
-    private void setImageUsuario(){
-        Icon iconoImagen = new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/gestion.png")).getImage().getScaledInstance(40,40, 0));
-        jLabelUsers.setIcon(iconoImagen);
-    };
-    
-    private void setImageCasa(){
-        Icon iconoImagen = new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/casa.png")).getImage().getScaledInstance(40,40, 0));
-        jLabelCasas.setIcon(iconoImagen);
-    };
-    
-    
-    private void setImageMenu(){
-        Icon iconoImagen = new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/menu.png")).getImage().getScaledInstance(40,40, 0));
-        jLabelMenu.setIcon(iconoImagen);
-    };
-    
+   
     
     
     public void transparenciaBtn(){

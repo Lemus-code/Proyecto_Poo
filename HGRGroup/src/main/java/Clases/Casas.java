@@ -1,105 +1,142 @@
 
-
+package Clases;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
 
 
 public class Casas {
     private String nombreCliente;
-    private int numCasa;
+    private String codigo;
     private String faseConstru;
-    private float costo;
+    private double costoBase;
+    private double costoAdons;
+    private double costoModificaciones;
+    private double costoFinal;
     private List<Modificaciones> modificaciones;
-    private List<Modificaciones> reporteModificaciones;
+    private List<Adons> adons;
     private LocalDate fechaEntrega;
-    private List<Cotizacion> reporteCotizacion;
+   // private List<Cotizacion> reporteCotizacion;
 
     public Casas() {
         this.nombreCliente = "";
-        this.numCasa = 0;
+        this.codigo = "";
         this.faseConstru = "";
-        this.costo = 0.0F;
+        this.costoBase = 0.0;
+        this.costoAdons = 0.0;
+        this.costoModificaciones = 0.0;
+        this.costoFinal = 0.0;
         this.modificaciones = new ArrayList<>();
-        this.reporteModificaciones = new ArrayList<>();
         this.fechaEntrega = LocalDate.of(0, 0, 0);
-        this.reporteCotizacion = new ArrayList<>();
+        //this.reporteCotizacion = new ArrayList<>();
     }
 
-    public Casas(String nombreCliente, int numCasa, String faseConstru, float costo, List<Modificaciones> modificaciones, List<Modificaciones> reporteModificaciones, LocalDate fechaEntrega, List<Cotizacion> reporteCotizacion) {
+    public Casas(String nombreCliente, String numCasa, String faseConstru, java.lang.Double costoBase, java.lang.Double costoAdons, java.lang.Double costoModificaciones, java.lang.Double costoFinal, List<Modificaciones> modificaciones, List<Adons> adons, LocalDate fechaEntrega) {
         this.nombreCliente = nombreCliente;
-        this.numCasa = numCasa;
+        this.codigo = numCasa;
         this.faseConstru = faseConstru;
-        this.costo = costo;
+        this.costoBase = costoBase;
+        this.costoAdons = costoAdons;
+        this.adons = adons;
+        this.costoModificaciones = costoModificaciones;
+        this.costoFinal = costoFinal;
         this.modificaciones = modificaciones;
-        this.reporteModificaciones = reporteModificaciones;
         this.fechaEntrega = fechaEntrega;
-        this.reporteCotizacion = reporteCotizacion;
+        //this.reporteCotizacion = reporteCotizacion;
     }
 
     public String getNombreCliente() {
         return nombreCliente;
     }
 
-    public int getNumCasa() {
-        return numCasa;
+    public String getCodigo() {
+        return codigo;
     }
 
     public String getFaseConstru() {
         return faseConstru;
     }
 
-    public float getCosto() {
-        return costo;
+    public double getCostoBase() {
+        return costoBase;
+    }
+    
+    public double getCostoAdons() {
+        return costoAdons;
     }
 
+    public List<Adons> getAdons(){
+        return adons;
+    };
+    public double getCostoModificaciones(){
+        return costoModificaciones;
+    }
+    
+    public double getCostoFinal(){
+        return costoFinal;
+    }
+    
     public List<Modificaciones> getModificaciones() {
         return modificaciones;
     }
 
-    public List<Modificaciones> getReporteModificaciones() {
-        return reporteModificaciones;
+    public String getFechaEntrega() {
+        //Establecemos formato de retorno
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        // Formatear la fecha según el formato personalizado
+        String fechaFormateada = fechaEntrega.format(formatter);
+        return fechaFormateada;
     }
 
-    public LocalDate getFechaEntrega() {
-        return fechaEntrega;
-    }
-
-    public List<Cotizacion> getReporteCotizacion() {
+    /*public List<Cotizacion> getReporteCotizacion() {
         return reporteCotizacion;
-    }
+    }*/
 
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
 
-    public void setNumCasa(int numCasa) {
-        this.numCasa = numCasa;
+    public void setCodigo(String code) {
+        this.codigo = code;
     }
 
     public void setFaseConstru(String faseConstru) {
         this.faseConstru = faseConstru;
     }
 
-    public void setCosto(float costo) {
-        this.costo = costo;
+    public void setCostoBase(double costoBase) {
+        this.costoBase = costoBase;
     }
-
+    
+    public void setCostoAdons(double costoAdons){
+        this.costoAdons = costoAdons;
+    }
+    
+    public void setAdons(List<Adons> adons){
+        this.adons = adons;
+    }
+    public void setCostoModificaciones(double costoModi){
+        this.costoModificaciones = costoModi;
+    }
+    
+    public void setCostoFinal(double costoFinal) {
+        this.costoFinal = costoFinal;
+    }
+    
     public void setModificaciones(List<Modificaciones> modificaciones) {
         this.modificaciones = modificaciones;
-    }
-
-    public void setReporteModificaciones(List<Modificaciones> reporteModificaciones) {
-        this.reporteModificaciones = reporteModificaciones;
     }
 
     public void setFechaEntrega(LocalDate fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
 
-    public void setReporteCotizacion(List<Cotizacion> reporteCotizacion) {
+    /*public void setReporteCotizacion(List<Cotizacion> reporteCotizacion) {
         this.reporteCotizacion = reporteCotizacion;
-    }
+    }*/
+    
     public String mostrarDatos(){
         String info= "";
         return info;

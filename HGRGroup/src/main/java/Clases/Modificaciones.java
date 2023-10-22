@@ -1,4 +1,4 @@
-
+package Clases;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
@@ -17,18 +17,18 @@ public class Modificaciones {
     private String nombreModi;
     private String descrip;
     private String estado;
-    private int numCasa;
+    private String codigo;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private float costoAdicional;
     private List<String> nombreCosto;
     private List<Float> desgloseCostos;
 
-    public Modificaciones(String nombreModi, String descrip, String estado, int numCasa, LocalDate fechaInicio, LocalDate fechaFin, float costoAdicional, List<String> nombreCosto, List<Float> desgloseCostos) {
+    public Modificaciones(String nombreModi, String descrip, String estado, String codigo, LocalDate fechaInicio, LocalDate fechaFin, float costoAdicional, List<String> nombreCosto, List<Float> desgloseCostos) {
         this.nombreModi = nombreModi;
         this.descrip = descrip;
         this.estado = estado;
-        this.numCasa = numCasa;
+        this.codigo = codigo;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.costoAdicional = costoAdicional;
@@ -40,7 +40,7 @@ public class Modificaciones {
         this.nombreModi = "";
         this.descrip = "";
         this.estado = "";
-        this.numCasa = 0;
+        this.codigo = "";
         this.fechaInicio = LocalDate.of(0, 0, 0);
         this.fechaFin = LocalDate.of(0, 0, 0);;
         this.costoAdicional = 0.0F;
@@ -61,8 +61,8 @@ public class Modificaciones {
         return estado;
     }
 
-    public int getNumCasa() {
-        return numCasa;
+    public String getNumCasa() {
+        return codigo;
     }
 
     public LocalDate getFechaInicio() {
@@ -97,8 +97,8 @@ public class Modificaciones {
         this.estado = estado;
     }
 
-    public void setNumCasa(int numCasa) {
-        this.numCasa = numCasa;
+    public void setNumCasa(String codigo) {
+        this.codigo = codigo;
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {

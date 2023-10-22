@@ -30,8 +30,8 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         
         //Métodos relevantes
         this.setSize(1520, 480);
-        transparencia();
-        setImageRegresar();
+        
+        
         
         //Información Tabla
         modelo.addColumn("Usuario");
@@ -121,15 +121,16 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         });
 
         jLabelRegresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelRegresarLayout = new javax.swing.GroupLayout(jPanelRegresar);
         jPanelRegresar.setLayout(jPanelRegresarLayout);
         jPanelRegresarLayout.setHorizontalGroup(
             jPanelRegresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegresarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addContainerGap()
+                .addComponent(jLabelRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanelRegresarLayout.setVerticalGroup(
@@ -137,7 +138,8 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
             .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanelRegresarLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabelRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabelRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
 
         jPanel3.add(jPanelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 70));
@@ -281,26 +283,6 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseEntered
-        // TODO add your handling code here:
-        Color colorRgb= new Color(0, 102, 204);
-        jPanelRegresar.setBackground(colorRgb);
-    }//GEN-LAST:event_btnRegresarMouseEntered
-
-    private void btnRegresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseExited
-        // TODO add your handling code here:
-        Color colorRgb= new Color(0,51,102);
-        jPanelRegresar.setBackground(colorRgb);
-    }//GEN-LAST:event_btnRegresarMouseExited
-
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        // TODO add your handling code here:
-        MenuPrincipal menu = new MenuPrincipal(getShareData());
-        this.setVisible(false);
-        menu.setVisible(true);
-        
-    }//GEN-LAST:event_btnRegresarActionPerformed
-
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
         
@@ -337,16 +319,27 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         };
         
     }//GEN-LAST:event_btnEliminarActionPerformed
-    private void transparencia(){
-        btnRegresar.setOpaque(false);
-        btnRegresar.setContentAreaFilled(false);
-        btnRegresar.setBorderPainted(false);
-    };
-    
-    public void setImageRegresar(){
-        Icon iconoImagen = new ImageIcon(new ImageIcon(getClass().getResource("/Imagenes/back.png")).getImage().getScaledInstance(30,30, 0));
-        jLabelRegresar.setIcon(iconoImagen);
-    };
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal menu = new MenuPrincipal(getShareData());
+        this.setVisible(false);
+        menu.setVisible(true);
+
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnRegresarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseExited
+        // TODO add your handling code here:
+        Color colorRgb= new Color(0,51,102);
+        jPanelRegresar.setBackground(colorRgb);
+    }//GEN-LAST:event_btnRegresarMouseExited
+
+    private void btnRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseEntered
+        // TODO add your handling code here:
+        Color colorRgb= new Color(0, 102, 204);
+        jPanelRegresar.setBackground(colorRgb);
+    }//GEN-LAST:event_btnRegresarMouseEntered
+   
     
     private void mostrarUsuarios(){   
         modelo.setRowCount(0);
