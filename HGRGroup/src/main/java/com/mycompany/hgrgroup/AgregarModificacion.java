@@ -248,7 +248,7 @@ public class AgregarModificacion extends javax.swing.JFrame {
             String nombre, estado, codigo, fechaInicio, fechaFin;
             double costoAdicional;
             nombre = txtFieldNombre.getText();
-            //descripcion = txtFieldDescri.getText();
+            //Adescripcion = txtFieldDescri.getText();
             estado = txtFieldEstado.getText();
             codigo = txtFieldCodigo.getText();
             costoAdicional = Integer.parseInt(txtFieldAdicional.getText());
