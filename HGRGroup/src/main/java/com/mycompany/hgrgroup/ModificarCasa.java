@@ -344,7 +344,7 @@ public class ModificarCasa extends javax.swing.JFrame {
                         diferenciaCostos = costoBaseViejo - Double.parseDouble(txtFieldCBase.getText());
                         sharedData.getCasas().get(i).setCostoFinal((sharedData.getCasas().get(i).getCostoFinal() - diferenciaCostos));
                     }else{
-                        //Si es mayor al original restamos el viejo al actual para obtener la diferencia y sumarlo al costo final
+                        //Si es mayor al original restamos el viejo al actual para obtener la diferencia y su al costo final
                         diferenciaCostos =  Double.parseDouble(txtFieldCBase.getText()) - costoBaseViejo;
                         sharedData.getCasas().get(i).setCostoFinal((sharedData.getCasas().get(i).getCostoFinal() + diferenciaCostos));
                     };
