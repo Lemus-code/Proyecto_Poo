@@ -6,6 +6,8 @@ Clases\Adons.class
 com\mycompany\hgrgroup\ModificarUserr$3.class
 com\mycompany\hgrgroup\CasasLandingPage$2.class
 com\mycompany\hgrgroup\UsuariosLandingPage$1.class
+com\mycompany\hgrgroup\AgregarModificacion$2.class
+com\mycompany\hgrgroup\AgregarCliente.class
 com\mycompany\hgrgroup\ModificarUserr.class
 com\mycompany\hgrgroup\ModificacionesLandingPage$4.class
 com\mycompany\hgrgroup\MenuPrincipal$8.class
@@ -21,6 +23,7 @@ com\mycompany\hgrgroup\CasasLandingPage$5.class
 com\mycompany\hgrgroup\MenuPrincipal$2.class
 com\mycompany\hgrgroup\AgregarUser.class
 com\mycompany\hgrgroup\ModificacionesCasas$4.class
+com\mycompany\hgrgroup\AgregarCliente$2.class
 com\mycompany\hgrgroup\AgregarCasa$2.class
 com\mycompany\hgrgroup\CasasLandingPage$7.class
 Clases\Casas.class
@@ -39,6 +42,8 @@ com\mycompany\hgrgroup\ModificacionesCasas$5.class
 com\mycompany\hgrgroup\PagosCliente$3.class
 com\mycompany\hgrgroup\UsuariosLandingPage.class
 com\mycompany\hgrgroup\AgregarCasa.class
+com\mycompany\hgrgroup\AgregarCliente$1.class
+com\mycompany\hgrgroup\AgregarModificacion$1.class
 com\mycompany\hgrgroup\MenuPrincipal$4.class
 com\mycompany\hgrgroup\UsuariosLandingPage$7.class
 com\mycompany\hgrgroup\AgregarCasa$1.class
@@ -90,6 +95,7 @@ com\mycompany\hgrgroup\ModificarCasa.class
 Clases\ReporteConstrucciones.class
 com\mycompany\hgrgroup\CostosModificacion$3.class
 Clases\Cotizacion.class
+com\mycompany\hgrgroup\AgregarModificacion.class
 com\mycompany\hgrgroup\CasasLandingPage$3.class
 com\mycompany\hgrgroup\ModificarUserr$4.class
 com\mycompany\hgrgroup\ModificacionesLandingPage$2.class

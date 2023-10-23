@@ -109,7 +109,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
-        btnAgregar1 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         btnAgregar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -253,16 +253,16 @@ public class CasasLandingPage extends javax.swing.JFrame {
         });
         jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 85, -1, 31));
 
-        btnAgregar1.setBackground(new java.awt.Color(0, 51, 102));
-        btnAgregar1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar1.setText("Agregar");
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setBackground(new java.awt.Color(0, 51, 102));
+        btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
 
         btnAgregar2.setBackground(new java.awt.Color(0, 51, 102));
         btnAgregar2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -410,9 +410,12 @@ public class CasasLandingPage extends javax.swing.JFrame {
         mostrarCasas();
     }//GEN-LAST:event_btnMostrarActionPerformed
 
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
+        AgregarCasa pageCasa = new AgregarCasa(getSharedData());
+        this.setVisible(false);
+        pageCasa.setVisible(true);
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
         // TODO add your handling code here:
@@ -421,7 +424,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar1;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;

@@ -359,9 +359,9 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        MenuPrincipal menu = new MenuPrincipal(getSharedData());
+        CasasLandingPage casasPage = new CasasLandingPage(getSharedData());
         this.setVisible(false);
-        menu.setVisible(true);
+        casasPage.setVisible(true);
         
     }//GEN-LAST:event_btnRegresarActionPerformed
 
