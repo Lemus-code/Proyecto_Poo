@@ -1,5 +1,6 @@
 package Clases;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -15,16 +16,14 @@ import java.util.ArrayList;
 public class Modificaciones {
     
     private String nombreModi;
-    private String descrip;
+    private List<String> descrip;
     private String estado;
     private String codigo;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
-    private float costoAdicional;
-    private List<String> nombreCosto;
-    private List<Float> desgloseCostos;
-
-    public Modificaciones(String nombreModi, String descrip, String estado, String codigo, LocalDate fechaInicio, LocalDate fechaFin, float costoAdicional, List<String> nombreCosto, List<Float> desgloseCostos) {
+    private double costoAdicional;
+ 
+    public Modificaciones(String nombreModi, List<String> descrip, String estado, String codigo, LocalDate fechaInicio, LocalDate fechaFin, double costoAdicional) {
         this.nombreModi = nombreModi;
         this.descrip = descrip;
         this.estado = estado;
@@ -32,20 +31,16 @@ public class Modificaciones {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.costoAdicional = costoAdicional;
-        this.nombreCosto = nombreCosto;
-        this.desgloseCostos = desgloseCostos;
     }
 
     public Modificaciones() {
         this.nombreModi = "";
-        this.descrip = "";
+        this.descrip = new ArrayList<>();
         this.estado = "";
         this.codigo = "";
         this.fechaInicio = LocalDate.of(0, 0, 0);
         this.fechaFin = LocalDate.of(0, 0, 0);;
         this.costoAdicional = 0.0F;
-        this.nombreCosto = new ArrayList<>();
-        this.desgloseCostos = new ArrayList<>();
         
     }
 
@@ -53,7 +48,7 @@ public class Modificaciones {
         return nombreModi;
     }
 
-    public String getDescrip() {
+    public List<String> getDescrip() {
         return descrip;
     }
 
@@ -65,31 +60,35 @@ public class Modificaciones {
         return codigo;
     }
 
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
+    public String getFechaInicio() {
+        //Establecemos formato de retorno
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        // Formatear la fecha según el formato personalizado
+        String fechaFormateada = fechaInicio.format(formatter);
+        return fechaFormateada;
     }
 
-    public LocalDate getFechaFin() {
-        return fechaFin;
+    public String getFechaFin() {
+        //Establecemos formato de retorno
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
+        // Formatear la fecha según el formato personalizado
+        String fechaFormateada = fechaFin.format(formatter);
+        return fechaFormateada;
     }
-
-    public float getCostoAdicional() {
+    
+    public double getCostoAdicional(){
         return costoAdicional;
-    }
+    };
 
-    public List<String> getNombreCosto() {
-        return nombreCosto;
-    }
 
-    public List<Float> getDesgloseCostos() {
-        return desgloseCostos;
-    }
 
     public void setNombreModi(String nombreModi) {
         this.nombreModi = nombreModi;
     }
 
-    public void setDescrip(String descrip) {
+    public void setDescrip(List<String>descrip) {
         this.descrip = descrip;
     }
 
@@ -109,31 +108,14 @@ public class Modificaciones {
         this.fechaFin = fechaFin;
     }
 
-    public void setCostoAdicional(float costoAdicional) {
+    public void setCostoAdicional(double costoAdicional) {
         this.costoAdicional = costoAdicional;
     }
 
-    public void setNombreCosto(List<String> nombreCosto) {
-        this.nombreCosto = nombreCosto;
-    }
 
-    public void setDesgloseCostos(List<Float> desgloseCostos) {
-        this.desgloseCostos = desgloseCostos;
-    }
     
-    public float costoAdicional(){
-      float costoAd = 0;
-      return costoAd;
-             
-    }
-    public String mostarDatos(){
-        String info= "";
-        return info;
-        
-    }
-    public void desgloseCostos(){
-        
-    }
+
+
     
     
     

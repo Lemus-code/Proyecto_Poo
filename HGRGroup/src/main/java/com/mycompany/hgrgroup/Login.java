@@ -245,15 +245,20 @@ public class Login extends javax.swing.JFrame {
                 // Formatear la fecha según el formato personalizado
                 String fechaFormateada = fechaEntrega.format(formatter);
         
-                // Imprimir la fecha formateada
-                System.out.println(fechaFormateada);
+                //Instancias Modificaciones
+                List<Modificaciones> list = new ArrayList<>();
+                List<String> descri = new ArrayList<>();
+                descri.add("ASDASDASDASDASDASDASDASD");
+              
+                Modificaciones modi1 = new Modificaciones("a", descri, "a", "a", fechaEntrega, fechaEntrega, 200000.0);
+                list.add(modi1);
                 
                 //Instancias de Casas
-                List<Modificaciones> list = new ArrayList<>();
                 List<Adons> adons = new ArrayList<>();
                 
                 
                 Casas casa1 = new Casas("Roberto Gonzales", "MAR100100", "Segundo Nivel", 300000.0, 0.0, 0.0,300000.0, list, adons, fechaEntrega);
+                
                 
                 //Instancias Clientes
                 List<Casas> casasClient1 = new ArrayList<>();

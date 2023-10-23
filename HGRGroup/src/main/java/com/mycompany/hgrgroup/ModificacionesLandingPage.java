@@ -6,76 +6,66 @@
 package com.mycompany.hgrgroup;
 import Clases.*;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 /**
  *
  * @author Familia
  */
-public class CasasLandingPage extends javax.swing.JFrame {
+public class ModificacionesLandingPage extends javax.swing.JFrame {
     private SharedData shareData;
     private DefaultTableModel modelo;
+    private String cliente;
     /**
      * Creates new form CasasLandingPage
      */
-    public CasasLandingPage(SharedData data) {
+    public ModificacionesLandingPage(SharedData data, String nombreCliente) {
         initComponents();
         this.shareData = data;
         this.modelo = new DefaultTableModel();
+        this.cliente = nombreCliente;
         transparencia(btnRegresar);
         this.setSize(1520, 480);
         
-         // Habilitar selección de celdas y filas
-        jTablaCasas.setCellSelectionEnabled(true);
-        jTablaCasas.setColumnSelectionAllowed(false);
-        jTablaCasas.setRowSelectionAllowed(true);
-
         
         //Columnas
-        modelo.addColumn("Cliente");
-        modelo.addColumn("Código");
-        modelo.addColumn("Fase Construcción");
-        modelo.addColumn("Costo Base");
-        modelo.addColumn("Costo Modificaciones");
-        modelo.addColumn("Modificaciones (Cantidad)");
-        modelo.addColumn("Costo Adons");
-        modelo.addColumn("Adons (Cantidad)");
-        modelo.addColumn("Costo Final");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Descripción");
+        modelo.addColumn("Estado");
+        modelo.addColumn("Fecha Inicio");
         modelo.addColumn("Fecha Entrega");
-        mostrarCasas();
+        modelo.addColumn("Costo Adicional");
         
-     jTablaCasas.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-            int row = jTablaCasas.rowAtPoint(e.getPoint());
-            int column = jTablaCasas.columnAtPoint(e.getPoint());
-            if (e.getClickCount() == 2 && column == getColumnIndex("Modificaciones (Cantidad)") && row != -1) {
-                jTablaCasas.clearSelection();
-                // Selecciona solo la celda específica
-                jTablaCasas.setColumnSelectionAllowed(true);
-                jTablaCasas.setRowSelectionAllowed(true);
-                jTablaCasas.changeSelection(row, column, false, false);
-                System.out.println("B");
-                mostrarModificiones();
-                System.out.println("A");
+        TableCellRenderer customRenderer = new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        
+            // Establece el ancho y alto específico para la columna de "Descripción"
+            if (column == getColumnIndex("Descripción")) {
+                component.setPreferredSize(new Dimension(500, 500));
+            }
+        
+            return component;
+        }
+        };
 
-            }else if(e.getClickCount() == 2 && column == getColumnIndex("Adons (Cantidad)") && row != -1){ 
-                jTablaCasas.clearSelection();
-                // Selecciona solo la celda específica
-                jTablaCasas.setColumnSelectionAllowed(true);
-                jTablaCasas.setRowSelectionAllowed(true);
-                jTablaCasas.changeSelection(row, column, false, false);
-                
-            }else {
-                 jTablaCasas.clearSelection();
-                 jTablaCasas.addRowSelectionInterval(row, row);
-            }
-            }
-        });
-        jTablaCasas.setModel(modelo);
+        
+        mostrarModificaciones();
+        
+        jTablaCasas.setModel(modelo);// Asigna el renderizador personalizado a la columna de "Descripción"
+        jTablaCasas.getColumnModel().getColumn(getColumnIndex("Descripción")).setCellRenderer(customRenderer);
+        
         //Desactivar edición
         desactivarCeldas();
         
@@ -106,11 +96,10 @@ public class CasasLandingPage extends javax.swing.JFrame {
         jLabelRegresar = new javax.swing.JLabel();
         txtFieldBuscar = new java.awt.TextField();
         btnBuscar = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
-        btnAgregar1 = new javax.swing.JButton();
-        btnAgregar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -220,6 +209,17 @@ public class CasasLandingPage extends javax.swing.JFrame {
         });
         jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 126, -1, -1));
 
+        btnAgregar.setBackground(new java.awt.Color(0, 51, 102));
+        btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
+
         btnModificar.setBackground(new java.awt.Color(0, 51, 102));
         btnModificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
@@ -229,7 +229,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 80, 32));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, 32));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -253,28 +253,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         });
         jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 85, -1, 31));
 
-        btnAgregar1.setBackground(new java.awt.Color(0, 51, 102));
-        btnAgregar1.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar1.setText("Agregar");
-        btnAgregar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAgregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
-
-        btnAgregar2.setBackground(new java.awt.Color(0, 51, 102));
-        btnAgregar2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Agregar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAgregar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -288,20 +266,9 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    private void mostrarModificiones(){
-           int fila = jTablaCasas.getSelectedRow();
-           Object valor = jTablaCasas.getValueAt(fila,0);
-            ModificacionesLandingPage pageModi = new ModificacionesLandingPage(getSharedData(), (String) valor);
-            this.setVisible(false);
-            pageModi.setVisible(true);
-    }
-    
     private int getColumnIndex(String columnName) {
         return jTablaCasas.getColumnModel().getColumnIndex(columnName);
     }
-    
     
     private void transparencia(JButton btn){
         btn.setOpaque(false);
@@ -316,50 +283,74 @@ public class CasasLandingPage extends javax.swing.JFrame {
         }
     };
      
-    private void mostrarCasas(){   
+    private void mostrarModificaciones(){   
         modelo.setRowCount(0);
         for(int i = 0; i < shareData.getCasas().size(); i++){
-            String [] row = new String[10];
-            row[0] = shareData.getCasas().get(i).getNombreCliente();
-            row[1] = shareData.getCasas().get(i).getCodigo();
-            row[2] = shareData.getCasas().get(i).getFaseConstru();
-            row[3] = String.valueOf(shareData.getCasas().get(i).getCostoBase());
-            row[4] = String.valueOf(shareData.getCasas().get(i).getCostoModificaciones());
-            row[5] = String.valueOf(shareData.getCasas().get(i).getModificaciones().size());
-            row[6] = String.valueOf(shareData.getCasas().get(i).getCostoAdons());
-            row[7] = String.valueOf(shareData.getCasas().get(i).getAdons().size());
-            row[8] = String.valueOf(shareData.getCasas().get(i).getCostoFinal());
-            row[9] = String.valueOf(shareData.getCasas().get(i).getFechaEntrega());
-            modelo.addRow(row);
-        };
+            if(shareData.getCasas().get(i).getNombreCliente().equals(cliente)){
+                for(int k = 0; k < shareData.getCasas().get(i).getModificaciones().size(); k++){
+                     List<String> descripciones = new ArrayList<>(); // Lista para almacenar descripciones
+
+                    List<Modificaciones> modificaciones = shareData.getCasas().get(i).getModificaciones();
+                    for (Modificaciones modificacion : modificaciones) {
+                        List<String> descripcionesModificacion = modificacion.getDescrip();
+                        descripciones.addAll(descripcionesModificacion);
+                    }
+
+                    // Convierte la lista de descripciones en una sola cadena, si es necesario
+                    String descripcionesConcatenadas = String.join(", ", descripciones);
+                    String [] row = new String[7];
+                    row[0] = shareData.getCasas().get(i).getModificaciones().get(i).getNombreModi();
+                    row[1] = descripcionesConcatenadas;
+                    row[2] = shareData.getCasas().get(i).getModificaciones().get(i).getEstado();
+                    row[3] = shareData.getCasas().get(i).getModificaciones().get(i).getNumCasa();
+                    row[4] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(i).getFechaInicio());
+                    row[5] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(i).getFechaFin());
+                    row[6] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(i).getCostoAdicional());
+                    modelo.addRow(row);
+                    
+                }
+            };
+        }
     } 
     
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         boolean encontrado = false;
-        for(int i = 0; i < shareData.getUsuarios().size(); i++){
-            if(txtFieldBuscar.getText().equals(shareData.getCasas().get(i).getNombreCliente())){
-                modelo.setRowCount(0);
-                String [] row = new String[10];
-                row[0] = shareData.getCasas().get(i).getNombreCliente();
-                row[1] = shareData.getCasas().get(i).getCodigo();
-                row[2] = shareData.getCasas().get(i).getFaseConstru();
-                row[3] = String.valueOf(shareData.getCasas().get(i).getCostoBase());
-                row[4] = String.valueOf(shareData.getCasas().get(i).getCostoModificaciones());
-                row[5] = String.valueOf(shareData.getCasas().get(i).getModificaciones().size());
-                row[6] = String.valueOf(shareData.getCasas().get(i).getCostoAdons());
-                row[7] = String.valueOf(shareData.getCasas().get(i).getAdons().size());
-                row[8] = String.valueOf(shareData.getCasas().get(i).getCostoFinal());
-                row[9] = String.valueOf(shareData.getCasas().get(i).getFechaEntrega());
-                modelo.addRow(row);
-                encontrado = true;
+        // Supongamos que txtFieldBuscar.getText() contiene el texto a buscar.
+        String textoBuscado = txtFieldBuscar.getText();
+        modelo.setRowCount(0); // Limpia el modelo antes de agregar nuevos resultados.
+
+        for (Casas casa : shareData.getCasas()) {
+            for (Modificaciones modificacion : casa.getModificaciones()) {
+                if (modificacion.getNombreModi().equals(textoBuscado)) {
+                    String[] row = new String[10];
+                    row[0] = casa.getNombreCliente();
+                    row[1] = casa.getCodigo();
+                    row[2] = casa.getFaseConstru();
+                    row[3] = String.valueOf(casa.getCostoBase());
+                    row[4] = String.valueOf(casa.getCostoModificaciones());
+                    row[5] = String.valueOf(casa.getModificaciones().size());
+                    row[6] = String.valueOf(casa.getCostoAdons());
+                    row[7] = String.valueOf(casa.getAdons().size());
+                    row[8] = String.valueOf(casa.getCostoFinal());
+                    row[9] = String.valueOf(casa.getFechaEntrega());
+                    modelo.addRow(row);
+                    encontrado = true;
+                }
             }
-        };
+        }
         
         if(encontrado != true){
-            JOptionPane.showMessageDialog(null, "Usuario Inexistente", "Error",JOptionPane.ERROR_MESSAGE);  
+            JOptionPane.showMessageDialog(null, "Modificación Inexistente", "Error",JOptionPane.ERROR_MESSAGE);  
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // TODO add your handling code here:
+        AgregarCasa pagAgregar = new AgregarCasa(getSharedData());
+        this.setVisible(false);
+        pagAgregar.setVisible(true);
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseEntered
         Color colorRgb= new Color(0, 102, 204);
@@ -407,22 +398,13 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         // TODO add your handling code here:
-        mostrarCasas();
+        mostrarModificaciones();
     }//GEN-LAST:event_btnMostrarActionPerformed
-
-    private void btnAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar1ActionPerformed
-
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregar1;
-    private javax.swing.JButton btnAgregar2;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
