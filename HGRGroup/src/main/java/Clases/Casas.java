@@ -15,7 +15,7 @@ public class Casas {
     private double costoModificaciones;
     private double costoFinal;
     private List<Modificaciones> modificaciones;
-    private List<Adons> adons;
+    private List<Addons> adons;
     private LocalDate fechaEntrega;
    // private List<Cotizacion> reporteCotizacion;
 
@@ -32,7 +32,7 @@ public class Casas {
         //this.reporteCotizacion = new ArrayList<>();
     }
 
-    public Casas(String nombreCliente, String numCasa, String faseConstru, java.lang.Double costoBase, java.lang.Double costoAdons, java.lang.Double costoModificaciones, java.lang.Double costoFinal, List<Modificaciones> modificaciones, List<Adons> adons, LocalDate fechaEntrega) {
+    public Casas(String nombreCliente, String numCasa, String faseConstru, java.lang.Double costoBase, java.lang.Double costoAdons, java.lang.Double costoModificaciones, java.lang.Double costoFinal, List<Modificaciones> modificaciones, List<Addons> adons, LocalDate fechaEntrega) {
         this.nombreCliente = nombreCliente;
         this.codigo = numCasa;
         this.faseConstru = faseConstru;
@@ -66,7 +66,7 @@ public class Casas {
         return costoAdons;
     }
 
-    public List<Adons> getAdons(){
+    public List<Addons> getAddons(){
         return adons;
     };
     public double getCostoModificaciones(){
@@ -110,11 +110,11 @@ public class Casas {
         this.costoBase = costoBase;
     }
     
-    public void setCostoAdons(double costoAdons){
+    public void setCostoAddons(double costoAdons){
         this.costoAdons = costoAdons;
     }
     
-    public void setAdons(List<Adons> adons){
+    public void setAddons(List<Addons> adons){
         this.adons = adons;
     }
     public void setCostoModificaciones(double costoModi){
@@ -137,9 +137,10 @@ public class Casas {
         this.reporteCotizacion = reporteCotizacion;
     }*/
     
-    public String mostrarDatos(){
-        String info= "";
-        return info;
+    public void calcularCostoFinal(){
+        double costoFinal = 0;
+        costoFinal = getCostoBase() + getCostoModificaciones() + getCostoAdons();
+        setCostoFinal(costoFinal);
     }
     
     

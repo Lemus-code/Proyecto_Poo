@@ -237,27 +237,35 @@ public class Login extends javax.swing.JFrame {
                 Usuarios user3 = new Usuarios("diegof", "12345", "Diego Solis", 212412, 19,"Albañil", 12345567,"Construcción", "diegoSolis@gmail.com" );
                 
                 //Fechas
-                LocalDate fechaEntrega = LocalDate.of(2023, 12, 31); // Año, mes, día
-                
+                LocalDate fechaInicio1 = LocalDate.of(2023, 7, 12); // Año, mes, día
+                LocalDate fechaInicio2 = LocalDate.of(2023, 12, 29); // Año, mes, día
+                LocalDate fechaEntrega1 = LocalDate.of(2023, 8, 15); // Año, mes, día
+                LocalDate fechaEntrega2 = LocalDate.of(2023, 12, 30); // Año, mes, día
                  // Definir un formato personalizado
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
                 // Formatear la fecha según el formato personalizado
-                String fechaFormateada = fechaEntrega.format(formatter);
+   
         
                 //Instancias Modificaciones
                 List<Modificaciones> list = new ArrayList<>();
                 List<String> descri = new ArrayList<>();
-                descri.add("ASDASDASDASDASDASDASDASD");
+                descri.add("Se cambiaron azulejos y acabados del baño de visitas");
               
-                Modificaciones modi1 = new Modificaciones("a", descri, "a", "a", fechaEntrega, fechaEntrega, 200000.0);
+                Modificaciones modi1 = new Modificaciones("Baño", descri, "50%", fechaInicio1, fechaEntrega1, 200000.0);
                 list.add(modi1);
                 
+                //Instancias de Addons
+                List<Addons> adons = new ArrayList<>();
+                List<String> descri2 = new ArrayList<>();
+                descri2.add("Pérgola con 1 mesa de vidrio rectangular, acabado de madera y 4 sillones");
+                Addons adon1 = new Addons("Pérgola", descri2, "70%", fechaInicio2, fechaEntrega2, 60000.0);
+                adons.add(adon1);
                 //Instancias de Casas
-                List<Adons> adons = new ArrayList<>();
                 
                 
-                Casas casa1 = new Casas("Roberto Gonzales", "MAR100100", "Segundo Nivel", 300000.0, 0.0, 0.0,300000.0, list, adons, fechaEntrega);
+                
+                Casas casa1 = new Casas("Roberto Gonzales", "MAR100100", "Segundo Nivel", 300000.0, 0.0, 0.0,300000.0, list, adons, fechaEntrega1);
                 
                 
                 //Instancias Clientes

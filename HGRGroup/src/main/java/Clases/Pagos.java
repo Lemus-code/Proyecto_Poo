@@ -13,13 +13,13 @@ public class Pagos {
     private int cantidad;
     private LocalDate fechaPago;
     private String estadoPago;
-    private List<Clientes> cliente;
+    private String cliente;
     private String metodoPago;
 
     public Pagos() {
     }
 
-    public Pagos(int cantidad, LocalDate fechaPago, String estadoPago, List<Clientes> cliente, String metodoPago) {
+    public Pagos(int cantidad, LocalDate fechaPago, String estadoPago, String cliente, String metodoPago) {
         this.cantidad = cantidad;
         this.fechaPago = fechaPago;
         this.estadoPago = estadoPago;
@@ -39,7 +39,7 @@ public class Pagos {
         return estadoPago;
     }
 
-    public List<Clientes> getCliente() {
+    public String getCliente() {
         return cliente;
     }
 
@@ -59,7 +59,7 @@ public class Pagos {
         this.estadoPago = estadoPago;
     }
 
-    public void setCliente(List<Clientes> cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
 

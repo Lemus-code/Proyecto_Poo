@@ -309,13 +309,11 @@ public class ModificarCasa extends javax.swing.JFrame {
         // TODO add your handling code here:
         //Esto establece el formato "yyyyMMdd"
         String fecha;
-        double costoBaseViejo, diferenciaCostos;
         try{
         //Recorremos la lista Usuarios y si encuentra entonces  mostramos su información blocked
             for(int i = 0; i < sharedData.getCasas().size(); i++){
                 if(getCliente().equals(sharedData.getCasas().get(i).getNombreCliente())){
                     //Extraemos el dato actual de Costo base
-                    costoBaseViejo = sharedData.getCasas().get(i).getCostoBase();
                     
                     //Actualizamos
                     sharedData.getCasas().get(i).setNombreCliente(txtFieldCliente.getText());
@@ -338,16 +336,6 @@ public class ModificarCasa extends javax.swing.JFrame {
                     } catch (ParseException e) {
                         JOptionPane.showMessageDialog(null, "Ingrese el formato correcto de la fecha dd/mm/yy", "Error",JOptionPane.ERROR_MESSAGE);
                     }
-                    //Actualizamos dato "Costo Final"
-                    if(sharedData.getCasas().get(i).getCostoBase() <= costoBaseViejo ){
-                        //Si es menor al original restamos el viejo con el actual para obtener la diferencia y restarlo al costo final
-                        diferenciaCostos = costoBaseViejo - Double.parseDouble(txtFieldCBase.getText());
-                        sharedData.getCasas().get(i).setCostoFinal((sharedData.getCasas().get(i).getCostoFinal() - diferenciaCostos));
-                    }else{
-                        //Si es mayor al original restamos el viejo al actual para obtener la diferencia y su al costo final
-                        diferenciaCostos =  Double.parseDouble(txtFieldCBase.getText()) - costoBaseViejo;
-                        sharedData.getCasas().get(i).setCostoFinal((sharedData.getCasas().get(i).getCostoFinal() + diferenciaCostos));
-                    };
                 };
             };
             btnAceptar.setVisible(false);

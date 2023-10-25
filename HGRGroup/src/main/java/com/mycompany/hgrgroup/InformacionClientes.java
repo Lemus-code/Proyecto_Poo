@@ -100,7 +100,7 @@ public class InformacionClientes extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Modificar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 122, -1, 32));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 122, 80, 32));
 
         jButton5.setBackground(new java.awt.Color(0, 51, 102));
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N

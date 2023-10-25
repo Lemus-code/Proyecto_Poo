@@ -13,24 +13,17 @@ public class Clientes {
     private String nombreCliente;
     private String email;
     private int numTelefono;
-    private List<Casas> casasAsocionadas;
-    private List<Casas> saldoPendiente;
-    private float pagoTotal;
+    private Casas casasAsociada;
+    private List<Pagos> pagosRealizados;
+    private double saldoPendiente;
+    private double pagoTotal;
 
-    public Clientes() {
-        this.nombreCliente = "";
-        this.email = "";
-        this.numTelefono = 00000000;
-        this.casasAsocionadas = new ArrayList<>();
-        this.saldoPendiente = new ArrayList<>();
-        this.pagoTotal = 0.0F;
-    }
-
-    public Clientes(String nombreCliente, String email, int numTelefono, List<Casas> casasAsocionadas, List<Casas> saldoPendiente, float pagoTotal) {
+    public Clientes(String nombreCliente, String email, int numTelefono, Casas casasAsociada, List<Pagos> pagosRealizados, double saldoPendiente, double pagoTotal) {
         this.nombreCliente = nombreCliente;
         this.email = email;
         this.numTelefono = numTelefono;
-        this.casasAsocionadas = casasAsocionadas;
+        this.casasAsociada = casasAsociada;
+        this.pagosRealizados = pagosRealizados;
         this.saldoPendiente = saldoPendiente;
         this.pagoTotal = pagoTotal;
     }
@@ -47,15 +40,18 @@ public class Clientes {
         return numTelefono;
     }
 
-    public List<Casas> getCasasAsocionadas() {
-        return casasAsocionadas;
+    public Casas getCasasAsocionadas() {
+        return casasAsociada;
     }
 
-    public List<Casas> getSaldoPendiente() {
+    public List<Pagos> getPagosRealizados() {
+        return pagosRealizados;
+    }
+    
+    public double getSaldoPendiente(){
         return saldoPendiente;
-    }
-
-    public float getPagoTotal() {
+    };
+    public double getPagoTotal() {
         return pagoTotal;
     }
 
@@ -71,15 +67,19 @@ public class Clientes {
         this.numTelefono = numTelefono;
     }
 
-    public void setCasasAsocionadas(List<Casas> casasAsocionadas) {
-        this.casasAsocionadas = casasAsocionadas;
+    public void setCasasAsocionadas(Casas casasAsocionadas) {
+        this.casasAsociada = casasAsocionadas;
     }
 
-    public void setSaldoPendiente(List<Casas> saldoPendiente) {
+    public void setPagosRealizados(List<Pagos> pagosRealizados) {
+        this.pagosRealizados = pagosRealizados ;
+    }
+
+    public void setSaldoPendiente(double saldoPendiente){
         this.saldoPendiente = saldoPendiente;
     }
-
-    public void setPagoTotal(float pagoTotal) {
+    
+    public void setPagoTotal(double pagoTotal) {
         this.pagoTotal = pagoTotal;
     }
     

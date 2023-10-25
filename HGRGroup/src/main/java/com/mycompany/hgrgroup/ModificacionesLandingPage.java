@@ -18,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 /**
  *
  * @author Familia
@@ -46,29 +47,34 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         modelo.addColumn("Fecha Entrega");
         modelo.addColumn("Costo Adicional");
         
-        TableCellRenderer customRenderer = new DefaultTableCellRenderer() {
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        
-            // Establece el ancho y alto específico para la columna de "Descripción"
-            if (column == getColumnIndex("Descripción")) {
-                component.setPreferredSize(new Dimension(500, 500));
-            }
-        
-            return component;
-        }
-        };
+         
 
+        jTablaModificaciones.setModel(modelo);// Asigna el renderizador personalizado a la columna de "Descripción"
+        
         
         mostrarModificaciones();
-        
-        jTablaCasas.setModel(modelo);// Asigna el renderizador personalizado a la columna de "Descripción"
-        jTablaCasas.getColumnModel().getColumn(getColumnIndex("Descripción")).setCellRenderer(customRenderer);
-        
         //Desactivar edición
         desactivarCeldas();
-        
+        // Desactiva el ajuste automático inicial
+        jTablaModificaciones.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        // Ajusta el ancho de las columnas al contenido
+        for (int column = 0; column < jTablaModificaciones.getColumnCount(); column++) {
+            TableColumn tableColumn = jTablaModificaciones.getColumnModel().getColumn(column);
+            int preferredWidth = tableColumn.getMinWidth(); // Ancho mínimo
+
+            for (int row = 0; row < jTablaModificaciones.getRowCount(); row++) {
+                TableCellRenderer renderer = jTablaModificaciones.getCellRenderer(row, column);
+                Component comp = jTablaModificaciones.prepareRenderer(renderer, row, column);
+                int width = comp.getPreferredSize().width + jTablaModificaciones.getIntercellSpacing().width;
+                preferredWidth = Math.max(preferredWidth, width);
+            }
+
+            tableColumn.setPreferredWidth(preferredWidth); // Establece el ancho preferido
+        }
+
+        // Activa el ajuste automático
+        jTablaModificaciones.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
     }
 
     public SharedData getSharedData() {
@@ -87,7 +93,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTablaCasas = new javax.swing.JTable();
+        jTablaModificaciones = new javax.swing.JTable();
         label2 = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
         label3 = new java.awt.Label();
@@ -108,9 +114,9 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTablaCasas.setBackground(new java.awt.Color(255, 255, 255));
-        jTablaCasas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        jTablaCasas.setModel(new javax.swing.table.DefaultTableModel(
+        jTablaModificaciones.setBackground(new java.awt.Color(255, 255, 255));
+        jTablaModificaciones.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        jTablaModificaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -121,14 +127,28 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(jTablaCasas);
-        if (jTablaCasas.getColumnModel().getColumnCount() > 0) {
-            jTablaCasas.getColumnModel().getColumn(1).setPreferredWidth(10);
+        jTablaModificaciones.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTablaModificaciones);
+        if (jTablaModificaciones.getColumnModel().getColumnCount() > 0) {
+            jTablaModificaciones.getColumnModel().getColumn(0).setResizable(false);
+            jTablaModificaciones.getColumnModel().getColumn(1).setResizable(false);
+            jTablaModificaciones.getColumnModel().getColumn(1).setPreferredWidth(10);
+            jTablaModificaciones.getColumnModel().getColumn(2).setResizable(false);
+            jTablaModificaciones.getColumnModel().getColumn(3).setResizable(false);
+            jTablaModificaciones.getColumnModel().getColumn(4).setResizable(false);
+            jTablaModificaciones.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 1360, 260));
@@ -141,10 +161,10 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        label3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("CASAS");
-        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 20));
+        label3.setText("MODIFICACIONES");
+        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 20));
 
         jPanelRegresar.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -218,7 +238,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 90, 31));
 
         btnModificar.setBackground(new java.awt.Color(0, 51, 102));
         btnModificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -229,7 +249,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, 32));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 90, 32));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -240,7 +260,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 81, 32));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 90, 32));
 
         btnMostrar.setBackground(new java.awt.Color(0, 51, 102));
         btnMostrar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -267,7 +287,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private int getColumnIndex(String columnName) {
-        return jTablaCasas.getColumnModel().getColumnIndex(columnName);
+        return jTablaModificaciones.getColumnModel().getColumnIndex(columnName);
     }
     
     private void transparencia(JButton btn){
@@ -279,8 +299,10 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
     private void desactivarCeldas(){
         for (int i = 0; i < modelo.getColumnCount(); i++) {
             Class<?> colClass = modelo.getColumnClass(i); //Toma el tipo de dato que tiene una columna, por eso el genérico
-            this.jTablaCasas.setDefaultEditor(colClass, null); // Esto deshabilita la edición
+            this.jTablaModificaciones.setDefaultEditor(colClass, null); // Esto deshabilita la edición
         }
+        jTablaModificaciones.getTableHeader().setReorderingAllowed(false); // Desactivar la reordenación de columnas
+        jTablaModificaciones.getTableHeader().setResizingAllowed(false);
     };
      
     private void mostrarModificaciones(){   
@@ -288,31 +310,53 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         for(int i = 0; i < shareData.getCasas().size(); i++){
             if(shareData.getCasas().get(i).getNombreCliente().equals(cliente)){
                 for(int k = 0; k < shareData.getCasas().get(i).getModificaciones().size(); k++){
-                     List<String> descripciones = new ArrayList<>(); // Lista para almacenar descripciones
 
-                    List<Modificaciones> modificaciones = shareData.getCasas().get(i).getModificaciones();
-                    for (Modificaciones modificacion : modificaciones) {
-                        List<String> descripcionesModificacion = modificacion.getDescrip();
-                        descripciones.addAll(descripcionesModificacion);
-                    }
-
-                    // Convierte la lista de descripciones en una sola cadena, si es necesario
-                    String descripcionesConcatenadas = String.join(", ", descripciones);
-                    String [] row = new String[7];
-                    row[0] = shareData.getCasas().get(i).getModificaciones().get(i).getNombreModi();
-                    row[1] = descripcionesConcatenadas;
-                    row[2] = shareData.getCasas().get(i).getModificaciones().get(i).getEstado();
-                    row[3] = shareData.getCasas().get(i).getModificaciones().get(i).getNumCasa();
-                    row[4] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(i).getFechaInicio());
-                    row[5] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(i).getFechaFin());
-                    row[6] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(i).getCostoAdicional());
+                    String [] row = new String[6];
+                    row[0] = shareData.getCasas().get(i).getModificaciones().get(k).getNombreModi();
+                    row[1] = "<html><body style='width: 300px'>" + shareData.getCasas().get(i).getModificaciones().get(k).getDescrip();
+                    row[2] = shareData.getCasas().get(i).getModificaciones().get(k).getEstado();
+                    row[3] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(k).getFechaInicio());
+                    row[4] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(k).getFechaFin());
+                    row[5] = String.valueOf(shareData.getCasas().get(i).getModificaciones().get(k).getCostoAdicional());
                     modelo.addRow(row);
                     
                 }
-            };
+            }
         }
+        ajustarTamanoColumnaDescripcion();
     } 
+    private void ajustarTamanoColumnaDescripcion() {
+        TableColumn columnaDescripcion = jTablaModificaciones.getColumnModel().getColumn(getColumnIndex("Descripción"));
+        int ancho = 0;
+        int alto = 1; // Altura mínima
+        TableCellRenderer renderer = columnaDescripcion.getHeaderRenderer();
+
+        for (int row = 0; row < jTablaModificaciones.getRowCount(); row++) {
+            renderer = jTablaModificaciones.getCellRenderer(row, columnaDescripcion.getModelIndex());
+            Component comp = renderer.getTableCellRendererComponent(jTablaModificaciones, jTablaModificaciones.getValueAt(row, columnaDescripcion.getModelIndex()), false, false, row, columnaDescripcion.getModelIndex());
+            ancho = Math.max(comp.getPreferredSize().width, ancho);
+
+            // Calcula la altura requerida para el contenido de la celda
+            int rowHeight = comp.getPreferredSize().height;
+            alto = Math.max(rowHeight, alto);
+         }
+
+        columnaDescripcion.setPreferredWidth(ancho + 10); // Agrega un pequeño espacio adicional.
+        jTablaModificaciones.setRowHeight(alto);
+    }
     
+     private void calcularCostoModificaciones(){
+        double costoModificaciones = 0;
+        for(int i = 0; i < shareData.getCasas().size(); i++){
+            if(shareData.getCasas().get(i).getNombreCliente().equals(cliente)){
+                for(int k = 0; k < shareData.getCasas().get(i).getModificaciones().size(); k++){
+                      costoModificaciones = costoModificaciones + shareData.getCasas().get(i).getModificaciones().get(k).getCostoAdicional();
+                }
+                shareData.getCasas().get(i).setCostoModificaciones(costoModificaciones);
+            }
+        }
+       
+    }
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         boolean encontrado = false;
@@ -331,7 +375,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
                     row[4] = String.valueOf(casa.getCostoModificaciones());
                     row[5] = String.valueOf(casa.getModificaciones().size());
                     row[6] = String.valueOf(casa.getCostoAdons());
-                    row[7] = String.valueOf(casa.getAdons().size());
+                    row[7] = String.valueOf(casa.getAddons().size());
                     row[8] = String.valueOf(casa.getCostoFinal());
                     row[9] = String.valueOf(casa.getFechaEntrega());
                     modelo.addRow(row);
@@ -347,9 +391,9 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        AgregarCasa pagAgregar = new AgregarCasa(getSharedData());
+        AgregarModificacion pagModi = new AgregarModificacion(getSharedData(), cliente);
         this.setVisible(false);
-        pagAgregar.setVisible(true);
+        pagModi.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseEntered
@@ -359,6 +403,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
+        calcularCostoModificaciones();
         CasasLandingPage casasPage = new CasasLandingPage(getSharedData());
         this.setVisible(false);
         casasPage.setVisible(true);
@@ -372,25 +417,30 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarMouseExited
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
-        int fila = jTablaCasas.getSelectedRow();
+        int fila = jTablaModificaciones.getSelectedRow();
+        System.out.println(fila);
         try{
-            Object valor = jTablaCasas.getValueAt(fila,0);
-            ModificarCasa modiPage = new ModificarCasa(getSharedData(), (String) valor); //Convierto valor a String
+            Object valor = jTablaModificaciones.getValueAt(fila,0);
+            ModificarModificacion modiPage = new ModificarModificacion(getSharedData(), (String) valor); //Convierto valor a String
             modiPage.setVisible(true);
             this.setVisible(false);
             
         }catch(Exception e){
              JOptionPane.showMessageDialog(null, "Seleccione una fila para modificar", "Error",JOptionPane.ERROR_MESSAGE);
-        };
+        };        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-        int fila = jTablaCasas.getSelectedRow();
+        int fila = jTablaModificaciones.getSelectedRow();
+        
         if(fila >= 0){
             modelo.removeRow(fila);
-            shareData.getCasas().remove(fila);
+            for(int i = 0 ; i < shareData.getCasas().size();i++){
+                if(shareData.getCasas().get(i).getNombreCliente().equals(cliente)){
+                    shareData.getCasas().get(i).getModificaciones().remove(fila);
+                }
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar", "Error",JOptionPane.ERROR_MESSAGE);
         };
@@ -415,7 +465,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTablaCasas;
+    private javax.swing.JTable jTablaModificaciones;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.TextField txtFieldBuscar;

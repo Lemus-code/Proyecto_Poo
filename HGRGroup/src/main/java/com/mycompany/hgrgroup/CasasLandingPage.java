@@ -33,41 +33,41 @@ public class CasasLandingPage extends javax.swing.JFrame {
         jTablaCasas.setColumnSelectionAllowed(false);
         jTablaCasas.setRowSelectionAllowed(true);
 
-        
+        //Calculamos costo total
+        calcularCostoTotal();
         //Columnas
         modelo.addColumn("Cliente");
         modelo.addColumn("Código");
         modelo.addColumn("Fase Construcción");
         modelo.addColumn("Costo Base");
+        modelo.addColumn("Modificaciones");
         modelo.addColumn("Costo Modificaciones");
-        modelo.addColumn("Modificaciones (Cantidad)");
+        modelo.addColumn("Adons");
         modelo.addColumn("Costo Adons");
-        modelo.addColumn("Adons (Cantidad)");
         modelo.addColumn("Costo Final");
         modelo.addColumn("Fecha Entrega");
         mostrarCasas();
         
-     jTablaCasas.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
+        jTablaCasas.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
             int row = jTablaCasas.rowAtPoint(e.getPoint());
             int column = jTablaCasas.columnAtPoint(e.getPoint());
-            if (e.getClickCount() == 2 && column == getColumnIndex("Modificaciones (Cantidad)") && row != -1) {
+            if (e.getClickCount() == 2 && column == getColumnIndex("Modificaciones") && row != -1) {
                 jTablaCasas.clearSelection();
                 // Selecciona solo la celda específica
                 jTablaCasas.setColumnSelectionAllowed(true);
                 jTablaCasas.setRowSelectionAllowed(true);
                 jTablaCasas.changeSelection(row, column, false, false);
-                System.out.println("B");
                 mostrarModificiones();
-                System.out.println("A");
 
-            }else if(e.getClickCount() == 2 && column == getColumnIndex("Adons (Cantidad)") && row != -1){ 
+            }else if(e.getClickCount() == 2 && column == getColumnIndex("Adons") && row != -1){ 
                 jTablaCasas.clearSelection();
                 // Selecciona solo la celda específica
                 jTablaCasas.setColumnSelectionAllowed(true);
                 jTablaCasas.setRowSelectionAllowed(true);
                 jTablaCasas.changeSelection(row, column, false, false);
+                mostrarAddons();
                 
             }else {
                  jTablaCasas.clearSelection();
@@ -110,7 +110,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
-        btnAgregar2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -229,7 +228,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 80, 32));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 90, 32));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -240,7 +239,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 81, 32));
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 90, 32));
 
         btnMostrar.setBackground(new java.awt.Color(0, 51, 102));
         btnMostrar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -262,18 +261,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
-
-        btnAgregar2.setBackground(new java.awt.Color(0, 51, 102));
-        btnAgregar2.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnAgregar2.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregar2.setText("Agregar");
-        btnAgregar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregar2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAgregar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 90, 31));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -298,6 +286,15 @@ public class CasasLandingPage extends javax.swing.JFrame {
             pageModi.setVisible(true);
     }
     
+     private void mostrarAddons(){
+           int fila = jTablaCasas.getSelectedRow();
+           Object valor = jTablaCasas.getValueAt(fila,0);
+           AddonsLandingPage pageModi = new AddonsLandingPage(getSharedData(), (String) valor);
+           this.setVisible(false);
+           pageModi.setVisible(true);
+    }
+    
+    
     private int getColumnIndex(String columnName) {
         return jTablaCasas.getColumnModel().getColumnIndex(columnName);
     }
@@ -315,7 +312,11 @@ public class CasasLandingPage extends javax.swing.JFrame {
             this.jTablaCasas.setDefaultEditor(colClass, null); // Esto deshabilita la edición
         }
     };
-     
+    private void calcularCostoTotal(){
+        for(int i = 0; i < shareData.getCasas().size(); i++){
+            shareData.getCasas().get(i).calcularCostoFinal();
+        };
+    }
     private void mostrarCasas(){   
         modelo.setRowCount(0);
         for(int i = 0; i < shareData.getCasas().size(); i++){
@@ -324,10 +325,10 @@ public class CasasLandingPage extends javax.swing.JFrame {
             row[1] = shareData.getCasas().get(i).getCodigo();
             row[2] = shareData.getCasas().get(i).getFaseConstru();
             row[3] = String.valueOf(shareData.getCasas().get(i).getCostoBase());
-            row[4] = String.valueOf(shareData.getCasas().get(i).getCostoModificaciones());
-            row[5] = String.valueOf(shareData.getCasas().get(i).getModificaciones().size());
-            row[6] = String.valueOf(shareData.getCasas().get(i).getCostoAdons());
-            row[7] = String.valueOf(shareData.getCasas().get(i).getAdons().size());
+            row[5] = String.valueOf(shareData.getCasas().get(i).getCostoModificaciones());
+            row[4] = String.valueOf(shareData.getCasas().get(i).getModificaciones().size());
+            row[7] = String.valueOf(shareData.getCasas().get(i).getCostoAdons());
+            row[6] = String.valueOf(shareData.getCasas().get(i).getAddons().size());
             row[8] = String.valueOf(shareData.getCasas().get(i).getCostoFinal());
             row[9] = String.valueOf(shareData.getCasas().get(i).getFechaEntrega());
             modelo.addRow(row);
@@ -345,10 +346,10 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 row[1] = shareData.getCasas().get(i).getCodigo();
                 row[2] = shareData.getCasas().get(i).getFaseConstru();
                 row[3] = String.valueOf(shareData.getCasas().get(i).getCostoBase());
-                row[4] = String.valueOf(shareData.getCasas().get(i).getCostoModificaciones());
-                row[5] = String.valueOf(shareData.getCasas().get(i).getModificaciones().size());
-                row[6] = String.valueOf(shareData.getCasas().get(i).getCostoAdons());
-                row[7] = String.valueOf(shareData.getCasas().get(i).getAdons().size());
+                row[5] = String.valueOf(shareData.getCasas().get(i).getCostoModificaciones());
+                row[4] = String.valueOf(shareData.getCasas().get(i).getModificaciones().size());
+                row[7] = String.valueOf(shareData.getCasas().get(i).getCostoAdons());
+                row[6] = String.valueOf(shareData.getCasas().get(i).getAddons().size());
                 row[8] = String.valueOf(shareData.getCasas().get(i).getCostoFinal());
                 row[9] = String.valueOf(shareData.getCasas().get(i).getFechaEntrega());
                 modelo.addRow(row);
@@ -417,15 +418,10 @@ public class CasasLandingPage extends javax.swing.JFrame {
         pageCasa.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnAgregar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregar2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregar2ActionPerformed
-
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnAgregar2;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;

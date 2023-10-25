@@ -210,7 +210,7 @@ public class AgregarCasa extends javax.swing.JFrame {
          try {
             String nombreCliente, codigo, faseConstru, fechaIngresada;
             List<Modificaciones> list = new ArrayList<>();
-            List<Adons> adons = new ArrayList<>();
+            List<Addons> adons = new ArrayList<>();
             
                     
             nombreCliente = txtFieldCliente.getText();

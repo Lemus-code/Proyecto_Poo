@@ -21,14 +21,18 @@ import javax.swing.JOptionPane;
 public class AgregarModificacion extends javax.swing.JFrame {
 
     private SharedData sharedData;
+    private String cliente;
     /**
      * Creates new form AgregarUsuario
      */
-    public AgregarModificacion(SharedData sharedData) {
+    public AgregarModificacion(SharedData sharedData, String cliente) {
         initComponents();
         this.sharedData = sharedData;
+        this.cliente = cliente;
         
-        this.setSize(671, 475);
+        this.setSize(671, 490);
+        txtFieldDescri.setLineWrap(true); // Habilita el ajuste de línea
+        txtFieldDescri.setWrapStyleWord(true); // Ajusta las líneas en palabras completas
     }
 
     public SharedData getSharedData() {
@@ -51,19 +55,18 @@ public class AgregarModificacion extends javax.swing.JFrame {
         label1 = new java.awt.Label();
         label3 = new java.awt.Label();
         label7 = new java.awt.Label();
-        label8 = new java.awt.Label();
         label9 = new java.awt.Label();
         label10 = new java.awt.Label();
         txtFieldNombre = new java.awt.TextField();
         txtFieldEstado = new java.awt.TextField();
         txtFieldInicio = new java.awt.TextField();
-        txtFieldCodigo = new java.awt.TextField();
         txtFieldFin = new java.awt.TextField();
         btnRegresar = new javax.swing.JButton();
         botonAgg1 = new javax.swing.JButton();
-        txtFieldDescri = new javax.swing.JPasswordField();
         txtFieldAdicional = new java.awt.TextField();
         label11 = new java.awt.Label();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtFieldDescri = new javax.swing.JTextArea();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -94,12 +97,6 @@ public class AgregarModificacion extends javax.swing.JFrame {
         label7.setForeground(new java.awt.Color(255, 255, 255));
         label7.setText("Estado");
 
-        label8.setAlignment(java.awt.Label.CENTER);
-        label8.setBackground(new java.awt.Color(0, 51, 102));
-        label8.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        label8.setForeground(new java.awt.Color(255, 255, 255));
-        label8.setText("Código");
-
         label9.setAlignment(java.awt.Label.CENTER);
         label9.setBackground(new java.awt.Color(0, 51, 102));
         label9.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
@@ -117,8 +114,6 @@ public class AgregarModificacion extends javax.swing.JFrame {
         txtFieldEstado.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         txtFieldInicio.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-
-        txtFieldCodigo.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         txtFieldFin.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
@@ -142,9 +137,6 @@ public class AgregarModificacion extends javax.swing.JFrame {
             }
         });
 
-        txtFieldDescri.setBackground(new java.awt.Color(255, 255, 255));
-        txtFieldDescri.setForeground(new java.awt.Color(0, 0, 0));
-
         txtFieldAdicional.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
 
         label11.setAlignment(java.awt.Label.CENTER);
@@ -152,6 +144,13 @@ public class AgregarModificacion extends javax.swing.JFrame {
         label11.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         label11.setForeground(new java.awt.Color(255, 255, 255));
         label11.setText("Costo Adicional");
+
+        txtFieldDescri.setBackground(new java.awt.Color(255, 255, 255));
+        txtFieldDescri.setColumns(20);
+        txtFieldDescri.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtFieldDescri.setForeground(new java.awt.Color(0, 0, 0));
+        txtFieldDescri.setRows(5);
+        jScrollPane1.setViewportView(txtFieldDescri);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -173,7 +172,6 @@ public class AgregarModificacion extends javax.swing.JFrame {
                     .addComponent(label3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label10, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                     .addComponent(label9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(label11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -181,42 +179,37 @@ public class AgregarModificacion extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                     .addComponent(txtFieldInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                    .addComponent(txtFieldCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                     .addComponent(txtFieldEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                     .addComponent(txtFieldFin, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                    .addComponent(txtFieldDescri)
-                    .addComponent(txtFieldAdicional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(92, Short.MAX_VALUE))
+                    .addComponent(txtFieldAdicional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(label1, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                            .addComponent(txtFieldDescri))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(label8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(label10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFieldInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -227,7 +220,7 @@ public class AgregarModificacion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFieldAdicional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(label11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(botonAgg1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -236,55 +229,68 @@ public class AgregarModificacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
-        UsuariosLandingPage usuariosPage = new UsuariosLandingPage(getSharedData());
+        ModificacionesLandingPage modiPage = new ModificacionesLandingPage(getSharedData(), cliente);
         this.setVisible(false);
-        usuariosPage.setVisible(true);
+        modiPage.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void botonAgg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgg1ActionPerformed
         // TODO add your handling code here:
          try {
-            List<String> descripcion;
-            String nombre, estado, codigo, fechaInicio, fechaFin;
-            double costoAdicional;
-            nombre = txtFieldNombre.getText();
-            //Adescripcion = txtFieldDescri.getText();
-            estado = txtFieldEstado.getText();
-            codigo = txtFieldCodigo.getText();
-            costoAdicional = Integer.parseInt(txtFieldAdicional.getText());
+            if (txtFieldNombre.getText().isEmpty() || txtFieldEstado.getText().isEmpty() || txtFieldInicio.getText().isEmpty() || txtFieldFin.getText().isEmpty() || txtFieldDescri.getText().isEmpty() || txtFieldAdicional.getText().isEmpty()  ) {
+                JOptionPane.showMessageDialog(null, "Llene todos los espacios del formulario", "Error",JOptionPane.ERROR_MESSAGE);
+            }else{
+                List<String> descripcion = new ArrayList<>();
+                String nombre, estado, fechaInicio, fechaFin, descri;
+                double costoAdicional;
+                nombre = txtFieldNombre.getText();
+                descri = txtFieldDescri.getText();
+                for (char c : descri.toCharArray()) {
+                    descripcion.add(String.valueOf(c));
+                }
             
+                estado = txtFieldEstado.getText();
+                costoAdicional = Double.parseDouble(txtFieldAdicional.getText());
             
-            // Matcher matcher = pattern.matcher(fecha);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            dateFormat.setLenient(false); // Desactiva el modo flexible para el análisis de fechas
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                dateFormat.setLenient(false); // Desactiva el modo flexible para el análisis de fechas
             
-            try {
-                // Verificar si los campos están vacíos
-                if (txtFieldNombre.getText().isEmpty() || txtFieldCodigo.getText().isEmpty() || txtFieldEstado.getText().isEmpty() || txtFieldInicio.getText().isEmpty() || txtFieldFin.getText().isEmpty() || txtFieldDescri.getText().isEmpty() || txtFieldAdicional.getText().isEmpty()  ) {
-                    JOptionPane.showMessageDialog(null, "Llene todos los espacios del formulario", "Error",JOptionPane.ERROR_MESSAGE);
-                } else {
+                try {
+                    // Verificar si los campos están vacíos
+                
                     fechaInicio = txtFieldInicio.getText();
                     Date fechaEntrega = dateFormat.parse(fechaInicio);
                     LocalDate dateInicio = fechaEntrega.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     
                     fechaFin = txtFieldFin.getText();
                     Date fechaEntrega2 = dateFormat.parse(fechaFin);
-                    LocalDate dateFin = fechaEntrega.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    LocalDate dateFin = fechaEntrega2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     
                     
-  
-                    JOptionPane.showMessageDialog(null, "La casa se agregó exitosamente", "Usuario Agregado",JOptionPane.INFORMATION_MESSAGE);
+                    Modificaciones modi = new Modificaciones(nombre, descripcion, estado, dateInicio, dateFin, costoAdicional);
+                    JOptionPane.showMessageDialog(null, "La modificación se agregó exitosamente", "Modificación Agregada",JOptionPane.INFORMATION_MESSAGE);
+                    for(int i = 0; i < sharedData.getCasas().size(); i++){
+                        if(sharedData.getCasas().get(i).getNombreCliente().equals(cliente)){
+                            sharedData.getCasas().get(i).getModificaciones().add(modi);
+                        };
+                    };
+                    
+                    
                     txtFieldNombre.setText("");
-                    txtFieldCodigo.setText("");
+                    txtFieldDescri.setText("");
                     txtFieldEstado.setText("");
                     txtFieldFin.setText("");
+                    txtFieldInicio.setText("");
+                    txtFieldAdicional.setText("");
+                    
+                
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Ingrese el formato correcto de la fecha dd/mm/yy", "Error",JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Ingrese el formato correcto de la fecha dd/mm/yy", "Error",JOptionPane.ERROR_MESSAGE);
             }
-           
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ingrese valores válidos en los campos numéricos", "Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ingrese valores válidos en los campos", "Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonAgg1ActionPerformed
 
@@ -294,17 +300,16 @@ public class AgregarModificacion extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private java.awt.Label label1;
     private java.awt.Label label10;
     private java.awt.Label label11;
     private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.Label label7;
-    private java.awt.Label label8;
     private java.awt.Label label9;
     private java.awt.TextField txtFieldAdicional;
-    private java.awt.TextField txtFieldCodigo;
-    private javax.swing.JPasswordField txtFieldDescri;
+    private javax.swing.JTextArea txtFieldDescri;
     private java.awt.TextField txtFieldEstado;
     private java.awt.TextField txtFieldFin;
     private java.awt.TextField txtFieldInicio;
