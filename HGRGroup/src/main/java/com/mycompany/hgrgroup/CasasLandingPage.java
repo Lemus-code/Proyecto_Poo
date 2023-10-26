@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 /**
  *
  * @author Familia
@@ -23,6 +24,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
      */
     public CasasLandingPage(SharedData data) {
         initComponents();
+//        initStyles();
         this.shareData = data;
         this.modelo = new DefaultTableModel();
         transparencia(btnRegresar);
@@ -80,6 +82,15 @@ public class CasasLandingPage extends javax.swing.JFrame {
         desactivarCeldas();
         
     }
+//     public void initStyles(){
+//    // Tabla
+//        JTableHeader header = jTablaCasas.getTableHeader();
+//        header.setForeground(new Color(31, 30, 31)); // cambiar color del texto
+//        header.setBackground(new Color(255, 200, 0));
+//        jTablaCasas.setBorder(null);
+//        
+//       
+//}
 
     public SharedData getSharedData() {
         return shareData;
@@ -100,7 +111,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         jTablaCasas = new javax.swing.JTable();
         label2 = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
-        label3 = new java.awt.Label();
         jPanelRegresar = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         jLabelRegresar = new javax.swing.JLabel();
@@ -110,6 +120,8 @@ public class CasasLandingPage extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,7 +130,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTablaCasas.setBackground(new java.awt.Color(255, 255, 255));
         jTablaCasas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTablaCasas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,7 +152,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
             jTablaCasas.getColumnModel().getColumn(1).setPreferredWidth(10);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 1360, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 1270, 260));
 
         label2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         label2.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,11 +161,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("CASAS");
-        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 20));
 
         jPanelRegresar.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -228,7 +234,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 90, 32));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 90, 32));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -261,13 +267,25 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 90, 31));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 90, 31));
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("CASAS");
+        jPanel5.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 130, 60));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -430,11 +448,12 @@ public class CasasLandingPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaCasas;
     private java.awt.Label label2;
-    private java.awt.Label label3;
+    private java.awt.Label label6;
     private java.awt.TextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }

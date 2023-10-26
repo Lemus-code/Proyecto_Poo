@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 /**
@@ -32,6 +33,7 @@ public class AddonsLandingPage extends javax.swing.JFrame {
      */
     public AddonsLandingPage(SharedData data, String nombreCliente) {
         initComponents();
+        initStyles();
         this.shareData = data;
         this.modelo = new DefaultTableModel();
         this.cliente = nombreCliente;
@@ -77,10 +79,21 @@ public class AddonsLandingPage extends javax.swing.JFrame {
         jTablaAddons.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
     }
 
+    
+    
     public SharedData getSharedData() {
         return shareData;
     }
 
+    public void initStyles(){
+    // Tabla
+        JTableHeader header = jTablaAddons.getTableHeader();
+        header.setForeground(new Color(31, 30, 31)); // cambiar color del texto
+        header.setBackground(new Color(255, 200, 0));
+        jTablaAddons.setBorder(null);
+        
+       
+}
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,7 +109,6 @@ public class AddonsLandingPage extends javax.swing.JFrame {
         jTablaAddons = new javax.swing.JTable();
         label2 = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
-        label3 = new java.awt.Label();
         jPanelRegresar = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         jLabelRegresar = new javax.swing.JLabel();
@@ -106,15 +118,17 @@ public class AddonsLandingPage extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setToolTipText("");
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTablaAddons.setBackground(new java.awt.Color(255, 255, 255));
         jTablaAddons.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTablaAddons.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -161,11 +175,6 @@ public class AddonsLandingPage extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("ADDONS");
-        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, 20));
-
         jPanelRegresar.setBackground(new java.awt.Color(0, 51, 102));
 
         btnRegresar.setBackground(new java.awt.Color(0, 51, 102));
@@ -194,21 +203,20 @@ public class AddonsLandingPage extends javax.swing.JFrame {
         jPanelRegresarLayout.setHorizontalGroup(
             jPanelRegresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegresarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelRegresar)
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabelRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelRegresarLayout.setVerticalGroup(
             jPanelRegresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRegresarLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanelRegresarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelRegresar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelRegresarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelRegresar))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jPanel4.add(jPanelRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 60));
@@ -238,7 +246,7 @@ public class AddonsLandingPage extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 90, 31));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 90, 31));
 
         btnModificar.setBackground(new java.awt.Color(0, 51, 102));
         btnModificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -249,7 +257,7 @@ public class AddonsLandingPage extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 90, 32));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 90, 32));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -272,6 +280,16 @@ public class AddonsLandingPage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 85, -1, 31));
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("ADDONS");
+        jPanel5.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 0, -1, 50));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -463,11 +481,12 @@ public class AddonsLandingPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaAddons;
     private java.awt.Label label2;
-    private java.awt.Label label3;
+    private java.awt.Label label6;
     private java.awt.TextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }

@@ -67,8 +67,6 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
 
         panelDinamico = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        label1 = new java.awt.Label();
-        label2 = new java.awt.Label();
         jPanelRegresar = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         jLabelRegresar = new javax.swing.JLabel();
@@ -80,6 +78,8 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         txtFieldBuscar = new java.awt.TextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaUsuarios = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,16 +88,6 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 51, 102));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        label1.setForeground(new java.awt.Color(255, 255, 255));
-        label1.setText("USUARIOS");
-        jPanel3.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 20));
-
-        label2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        label2.setForeground(new java.awt.Color(255, 255, 255));
-        label2.setText("MENÚ");
-        jPanel3.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, 20));
 
         jPanelRegresar.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -164,7 +154,7 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        panelDinamico.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 81, 31));
+        panelDinamico.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 90, 31));
 
         btnModificar.setBackground(new java.awt.Color(0, 51, 102));
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,7 +164,7 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        panelDinamico.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 80, 32));
+        panelDinamico.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 110, 32));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
@@ -184,7 +174,7 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
                 btnEliminarActionPerformed(evt);
             }
         });
-        panelDinamico.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 81, 32));
+        panelDinamico.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 110, 32));
 
         btnBuscar.setBackground(new java.awt.Color(0, 51, 102));
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -199,8 +189,6 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTablaUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        jTablaUsuarios.setForeground(new java.awt.Color(0, 0, 0));
         jTablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -246,6 +234,16 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         }
 
         panelDinamico.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 1360, 190));
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 30)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("MENÚ USUARIOS");
+        jPanel5.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 260, 70));
+
+        panelDinamico.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 70));
 
         getContentPane().add(panelDinamico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, -1));
     }// </editor-fold>//GEN-END:initComponents
@@ -376,11 +374,11 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaUsuarios;
-    private java.awt.Label label1;
-    private java.awt.Label label2;
+    private java.awt.Label label6;
     private javax.swing.JPanel panelDinamico;
     private java.awt.TextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables

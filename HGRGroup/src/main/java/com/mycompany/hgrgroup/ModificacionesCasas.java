@@ -34,13 +34,14 @@ public class ModificacionesCasas extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        label3 = new java.awt.Label();
         jButton2 = new javax.swing.JButton();
         textField1 = new java.awt.TextField();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,11 +110,6 @@ public class ModificacionesCasas extends javax.swing.JFrame {
         });
         jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 150, 40));
 
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("CASAS");
-        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 20));
-
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 450));
 
         jButton2.setBackground(new java.awt.Color(0, 51, 102));
@@ -135,12 +131,12 @@ public class ModificacionesCasas extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(0, 51, 102));
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Eliminar");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 81, 32));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 81, 32));
 
         jButton4.setBackground(new java.awt.Color(0, 51, 102));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Modificar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, -1, 32));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, 32));
 
         jButton3.setBackground(new java.awt.Color(0, 51, 102));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,13 +146,23 @@ public class ModificacionesCasas extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 81, 31));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, 81, 31));
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("CASAS");
+        jPanel5.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, -1));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,10 +203,11 @@ public class ModificacionesCasas extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private java.awt.Label label2;
-    private java.awt.Label label3;
+    private java.awt.Label label6;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }

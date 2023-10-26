@@ -96,7 +96,6 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         jTablaModificaciones = new javax.swing.JTable();
         label2 = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
-        label3 = new java.awt.Label();
         jPanelRegresar = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         jLabelRegresar = new javax.swing.JLabel();
@@ -106,6 +105,8 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnMostrar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,7 +115,6 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTablaModificaciones.setBackground(new java.awt.Color(255, 255, 255));
         jTablaModificaciones.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTablaModificaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,11 +160,6 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("MODIFICACIONES");
-        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 20));
 
         jPanelRegresar.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -238,7 +233,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 90, 31));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 90, 31));
 
         btnModificar.setBackground(new java.awt.Color(0, 51, 102));
         btnModificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -249,7 +244,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 90, 32));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 90, 32));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -272,6 +267,17 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 85, -1, 31));
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("MODIFICACIONES\n");
+        jPanel5.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 0, 310, 60));
+        label6.getAccessibleContext().setAccessibleName("MODIFICACIONES");
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -463,11 +469,12 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaModificaciones;
     private java.awt.Label label2;
-    private java.awt.Label label3;
+    private java.awt.Label label6;
     private java.awt.TextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }

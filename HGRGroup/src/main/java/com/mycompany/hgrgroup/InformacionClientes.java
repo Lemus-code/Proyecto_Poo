@@ -32,9 +32,6 @@ public class InformacionClientes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        label2 = new java.awt.Label();
-        label3 = new java.awt.Label();
-        label4 = new java.awt.Label();
         jLabelRegresar = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -44,6 +41,8 @@ public class InformacionClientes extends javax.swing.JFrame {
         textField1 = new java.awt.TextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -57,21 +56,6 @@ public class InformacionClientes extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Regresar");
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 100, 40));
-
-        label2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        label2.setForeground(new java.awt.Color(255, 255, 255));
-        label2.setText("CLIENTES");
-        jPanel3.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
-
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("INFORMACIÓN");
-        jPanel3.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, -1));
-
-        label4.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        label4.setForeground(new java.awt.Color(255, 255, 255));
-        label4.setText("DE LOS");
-        jPanel3.add(label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
 
         jLabelRegresar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/back.png"))); // NOI18N
@@ -94,19 +78,19 @@ public class InformacionClientes extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 85, 81, 31));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 81, 31));
 
         jButton4.setBackground(new java.awt.Color(0, 51, 102));
         jButton4.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Modificar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 122, 80, 32));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 110, 32));
 
         jButton5.setBackground(new java.awt.Color(0, 51, 102));
         jButton5.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Eliminar");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 160, 81, 32));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 120, 81, 32));
 
         jButton6.setBackground(new java.awt.Color(0, 51, 102));
         jButton6.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -124,7 +108,6 @@ public class InformacionClientes extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,6 +128,16 @@ public class InformacionClientes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 1360, 200));
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("INFORMACIÓN DE LOS CLIENTES");
+        jPanel5.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(503, 0, 380, -1));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 460));
     }// </editor-fold>//GEN-END:initComponents
@@ -169,11 +162,10 @@ public class InformacionClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private java.awt.Label label2;
-    private java.awt.Label label3;
-    private java.awt.Label label4;
+    private java.awt.Label label6;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
