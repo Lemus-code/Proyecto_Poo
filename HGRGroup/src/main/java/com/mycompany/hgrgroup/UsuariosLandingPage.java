@@ -8,6 +8,11 @@ import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import Clases.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,7 +36,7 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         //Métodos relevantes
         this.setSize(1520, 480);
         
-        
+        transparencia(btnRegresar);
         
         //Información Tabla
         modelo.addColumn("Usuario");
@@ -48,12 +53,23 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         //Desactivamos celdas
         desactivarCeldas();
         
+        txtFieldBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscar(txtFieldBuscar.getText()); // Llama a la función buscar con el texto ingresado
+            }
+        });
     }
 
     public SharedData getShareData() {
         return shareData;
     }
     
+     private void transparencia(JButton btn){
+        btn.setOpaque(false);
+        btn.setContentAreaFilled(false);
+        btn.setBorderPainted(false);
+    };
     
 
     /**
@@ -72,14 +88,13 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         jPanelRegresar = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         jLabelRegresar = new javax.swing.JLabel();
-        btnMostrar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         txtFieldBuscar = new java.awt.TextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaUsuarios = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -146,16 +161,6 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
 
         panelDinamico.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 450));
 
-        btnMostrar.setBackground(new java.awt.Color(0, 51, 102));
-        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnMostrar.setText("Mostrar Todo");
-        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarActionPerformed(evt);
-            }
-        });
-        panelDinamico.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, -1, 31));
-
         btnAgregar.setBackground(new java.awt.Color(0, 51, 102));
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("Agregar");
@@ -185,17 +190,7 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
             }
         });
         panelDinamico.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 81, 32));
-
-        btnBuscar.setBackground(new java.awt.Color(0, 51, 102));
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        panelDinamico.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, -1, -1));
-        panelDinamico.add(txtFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 250, 23));
+        panelDinamico.add(txtFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 250, 23));
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -247,33 +242,45 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
 
         panelDinamico.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 1360, 190));
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Buscar Usuario");
+        panelDinamico.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+
         getContentPane().add(panelDinamico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+    private void buscar(String textoIngresado) {
         boolean encontrado = false;
-        for(int i = 0; i < shareData.getUsuarios().size(); i++){
-            if(txtFieldBuscar.getText().equals(shareData.getUsuarios().get(i).getUsuario())){
-                modelo.setRowCount(0);
-                String [] row = new String[8];
-                row[0] = shareData.getUsuarios().get(i).getUsuario();
-                row[1] = shareData.getUsuarios().get(i).getContrasenaOfuscada();
-                row[2] = shareData.getUsuarios().get(i).getNombreUsuario();
-                row[3] = String.valueOf(shareData.getUsuarios().get(i).getDpi());
-                row[4] = String.valueOf(shareData.getUsuarios().get(i).getEdad());
-                row[5] = String.valueOf(shareData.getUsuarios().get(i).getTelefono());
-                row[6] = shareData.getUsuarios().get(i).getDepartamento();
-                row[7] = shareData.getUsuarios().get(i).getEmail();
-                modelo.addRow(row);
+        List<Usuarios> usuariosEncontrados = new ArrayList<>();
+
+        for (Usuarios usuario : shareData.getUsuarios()) {
+            if (textoIngresado.isEmpty()) {
+                mostrarUsuarios();
+                return; // No es necesario seguir buscando si el campo de búsqueda está vacío
+            } else if (textoIngresado.equals(usuario.getUsuario()) || textoIngresado.equals(usuario.getNombreUsuario()) || textoIngresado.equals(String.valueOf(usuario.getDpi())) || textoIngresado.equals(String.valueOf(usuario.getEdad())) || textoIngresado.equals(usuario.getCargo()) || textoIngresado.equals(usuario.getDepartamento()) || textoIngresado.equals(usuario.getEmail())) {
+                usuariosEncontrados.add(usuario);
                 encontrado = true;
             }
-        };
-        
-        if(encontrado != true){
-            JOptionPane.showMessageDialog(null, "Usuario Inexistente", "Error",JOptionPane.ERROR_MESSAGE);  
         }
-    }//GEN-LAST:event_btnBuscarActionPerformed
+
+        if (encontrado) {
+            modelo.setRowCount(0);
+            for (Usuarios usuarioEncontrado : usuariosEncontrados) {
+                String[] row = new String[8];
+                row[0] = usuarioEncontrado.getUsuario();
+                row[1] = usuarioEncontrado.getContrasenaOfuscada();
+                row[2] = usuarioEncontrado.getNombreUsuario();
+                row[3] = String.valueOf(usuarioEncontrado.getDpi());
+                row[4] = String.valueOf(usuarioEncontrado.getEdad());
+                row[5] = String.valueOf(usuarioEncontrado.getTelefono());
+                row[6] = usuarioEncontrado.getDepartamento();
+                row[7] = usuarioEncontrado.getEmail();
+                modelo.addRow(row);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron coincidencias", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
@@ -300,11 +307,6 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnModificarActionPerformed
-
-    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        // TODO add your handling code here:
-        mostrarUsuarios();
-    }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
@@ -369,11 +371,10 @@ public class UsuariosLandingPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelRegresar;

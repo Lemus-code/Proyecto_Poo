@@ -169,7 +169,6 @@ public class Login extends javax.swing.JFrame {
 
     private void bntIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntIniciarActionPerformed
         // TODO add your handling code here:
-        MenuPrincipal menu = new MenuPrincipal(getShareData());
         String usuario, contrasena;
         usuario = txtFieldUser.getText();
         contrasena = txtFieldContra.getText();
@@ -178,8 +177,16 @@ public class Login extends javax.swing.JFrame {
         //Verificamos si la autenticación es válida o no
         if(verificacion == true){
             //Si es válida, cambiamos de vista al menú principal
+            for(int i = 0; i < shareData.getUsuarios().size(); i++){
+                if(usuario.equals(shareData.getUsuarios().get(i).getNombreUsuario())){
+                    String departamento = shareData.getUsuarios().get(i).getDepartamento();
+                    shareData.setDepartamento(departamento);
+                }
+            }
+            MenuPrincipal menu = new MenuPrincipal(getShareData());
             this.setVisible(false);
             menu.setVisible(true);
+            
             
                     
         }else{
@@ -232,15 +239,16 @@ public class Login extends javax.swing.JFrame {
             public void run() {
                
                 //Instancias Usuarios
-                Usuarios user1 = new Usuarios("Admin", "1234", "Alberto González", 298877007, 40,"Administrador", 12345567,"Administración", "albertogonza@gmail.com" );
-                Usuarios user2 = new Usuarios("EnriqueGonzales", "12345", "Enrique González", 12312317, 21,"Contador", 12345567,"Administración", "enriqueGonza@gmail.com" );
-                Usuarios user3 = new Usuarios("diegof", "12345", "Diego Solis", 212412, 19,"Albañil", 12345567,"Construcción", "diegoSolis@gmail.com" );
-                
+                Usuarios user1 = new Usuarios("Admin", "1234", "Alberto González", 2988770070123L, 40,"Administrador", 12345567,"Administrador", "albertogonza@gmail.com" );
+                Usuarios user2 = new Usuarios("EnriqueGonzales", "12345", "Enrique González",134568763245L, 21,"Contador", 12345567,"Administración", "enriqueGonza@gmail.com" );
+                Usuarios user3 = new Usuarios("diegof", "12345", "Diego Solis", 123246789123L, 19,"Albañil", 12345567,"Construcción", "diegoSolis@gmail.com" );
+                Usuarios user4 = new Usuarios("dlemusaldana", "12345", "Diego Lemus", 123246789123L, 19,"Secretario", 12345567,"Atención al Cliente", "diegoSolis@gmail.com" );
                 //Fechas
                 LocalDate fechaInicio1 = LocalDate.of(2023, 7, 12); // Año, mes, día
-                LocalDate fechaInicio2 = LocalDate.of(2023, 12, 29); // Año, mes, día
+                LocalDate fechaInicio2 = LocalDate.of(2023, 12, 29); // Año, mes, dí
                 LocalDate fechaEntrega1 = LocalDate.of(2023, 8, 15); // Año, mes, día
                 LocalDate fechaEntrega2 = LocalDate.of(2023, 12, 30); // Año, mes, día
+                LocalDate fechaPago = LocalDate.of(2023, 10, 21); // Año, mes, día
                  // Definir un formato personalizado
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         
@@ -262,23 +270,28 @@ public class Login extends javax.swing.JFrame {
                 Addons adon1 = new Addons("Pérgola", descri2, "70%", fechaInicio2, fechaEntrega2, 60000.0);
                 adons.add(adon1);
                 //Instancias de Casas
-                
-                
-                
-                Casas casa1 = new Casas("Roberto Gonzales", "MAR100100", "Segundo Nivel", 300000.0, 0.0, 0.0,300000.0, list, adons, fechaEntrega1);
+                Casas casa1 = new Casas("Roberto Gonzalez", "MAR100100", "Segundo Nivel", 300000.0, 60000.0, 200000.0,300000.0, list, adons, fechaEntrega1);
                 
                 
                 //Instancias Clientes
                 List<Casas> casasClient1 = new ArrayList<>();
                 casasClient1.add(casa1);
-                // Clientes client1 = new Clientes();
+                
+                Pagos pago1 = new Pagos("1",30000, fechaPago, "Completado", "Roberto Gonzalez", "Transacción Bancaria");
+                
+                Clientes client1 = new Clientes("Roberto Gonzalez", "robertoGonza@gmail.com", 55525768, casa1);
+                client1.agregarPago(pago1);
+                
                 //Añadimos a clase shareData
                 SharedData data1 = new SharedData();
                 data1.agregarUsuarios(user1);
                 data1.agregarUsuarios(user2);
                 data1.agregarUsuarios(user3);
+                data1.agregarUsuarios(user4);
+                
                 
                 data1.agregarCasa(casa1);
+                data1.agregaCliete(client1);
                 
                 new Login(data1).setVisible(true);
                 

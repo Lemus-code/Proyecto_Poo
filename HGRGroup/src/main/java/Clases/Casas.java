@@ -28,7 +28,7 @@ public class Casas {
         this.costoModificaciones = 0.0;
         this.costoFinal = 0.0;
         this.modificaciones = new ArrayList<>();
-        this.fechaEntrega = LocalDate.of(0, 0, 0);
+        this.fechaEntrega = LocalDate.of(1, 1, 1);
         //this.reporteCotizacion = new ArrayList<>();
     }
 

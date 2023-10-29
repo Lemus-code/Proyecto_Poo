@@ -15,12 +15,16 @@ public class SharedData {
     private List<Usuarios> usuarios;
     private List<Departamentos> departamentos;
     private List<Casas> casas;
+    private List<Clientes> clientes;
+    private String departamento;
     //Constructores
     
     public SharedData() {
         this.usuarios = new ArrayList <>();
         this.departamentos = new ArrayList <>();    
         this.casas = new ArrayList <>();    
+        this.clientes = new ArrayList <>();    
+        this.departamento = "";
     }
 
     
@@ -37,7 +41,14 @@ public class SharedData {
      public List<Casas> getCasas() {
         return casas;
     }
+     
+      public List<Clientes> getClientes() {
+        return clientes;
+    }
     
+      public String getDepartamento(){
+          return departamento;
+      }
     //Setters
     public void setUsuarios(List<Usuarios> usuarios) {
         this.usuarios = usuarios;
@@ -51,6 +62,14 @@ public class SharedData {
         this.casas = casas;
     }
     
+    public void setClientes(List<Clientes> clientes) {
+        this.clientes = clientes;
+    }
+    
+    public void setDepartamento(String depa){
+        this.departamento = depa;
+    };
+    
     //Métodos
     public void agregarUsuarios(Usuarios user){
         usuarios.add(user);
@@ -63,6 +82,11 @@ public class SharedData {
     public void agregarCasa(Casas casa){
         casas.add(casa);
     };
+    
+    public void agregaCliete(Clientes cliente){
+        clientes.add(cliente);
+    };
+    
     public boolean autenticarUsuario(String usuario, String contrasena){
         boolean verificacion = false;
         for(int i = 0; i < usuarios.size(); i++){

@@ -98,7 +98,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaCasas = new javax.swing.JTable();
-        label2 = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
         label3 = new java.awt.Label();
         jPanelRegresar = new javax.swing.JPanel();
@@ -142,11 +141,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 1360, 260));
-
-        label2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        label2.setForeground(new java.awt.Color(255, 255, 255));
-        label2.setText("MENÚ");
-        jPanel1.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, 20));
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -400,7 +394,10 @@ public class CasasLandingPage extends javax.swing.JFrame {
         int fila = jTablaCasas.getSelectedRow();
         if(fila >= 0){
             modelo.removeRow(fila);
-            shareData.getCasas().remove(fila);
+             // Eliminar el elemento de la lista shareData.getCasas
+            if (fila < shareData.getCasas().size()) {
+                shareData.getCasas().remove(fila);
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar", "Error",JOptionPane.ERROR_MESSAGE);
         };
@@ -433,7 +430,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaCasas;
-    private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.TextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables

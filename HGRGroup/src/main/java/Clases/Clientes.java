@@ -18,14 +18,15 @@ public class Clientes {
     private double saldoPendiente;
     private double pagoTotal;
 
-    public Clientes(String nombreCliente, String email, int numTelefono, Casas casasAsociada, List<Pagos> pagosRealizados, double saldoPendiente, double pagoTotal) {
+    
+    public Clientes(String nombreCliente, String email, int numTelefono, Casas casasAsociada) {
         this.nombreCliente = nombreCliente;
         this.email = email;
         this.numTelefono = numTelefono;
         this.casasAsociada = casasAsociada;
-        this.pagosRealizados = pagosRealizados;
-        this.saldoPendiente = saldoPendiente;
-        this.pagoTotal = pagoTotal;
+        this.pagosRealizados = new ArrayList<>();
+        this.pagoTotal = casasAsociada.getCostoFinal();
+        this.saldoPendiente = casasAsociada.getCostoFinal();
     }
 
     public String getNombreCliente() {
@@ -67,7 +68,7 @@ public class Clientes {
         this.numTelefono = numTelefono;
     }
 
-    public void setCasasAsocionadas(Casas casasAsocionadas) {
+    public void setCasasAsociadas(Casas casasAsocionadas) {
         this.casasAsociada = casasAsocionadas;
     }
 
@@ -75,18 +76,33 @@ public class Clientes {
         this.pagosRealizados = pagosRealizados ;
     }
 
-    public void setSaldoPendiente(double saldoPendiente){
+    public void setSaldoPendienteDirecto(double saldoPendiente){
         this.saldoPendiente = saldoPendiente;
+    }
+    public void setSaldoPendientePagos(double totalPagosRealizados){
+        if(getSaldoPendiente() == 0){
+            this.saldoPendiente = 0;
+        }else{
+            this.saldoPendiente = (pagoTotal - totalPagosRealizados);
+        }
     }
     
     public void setPagoTotal(double pagoTotal) {
         this.pagoTotal = pagoTotal;
     }
     
-    public String mostarDatos(){
-        String info = "";
-        return info;
+    //Métodos
+    public void agregarPago(Pagos pago){
+        pagosRealizados.add(pago);
+    };
+    public double totalPagosRealizados(){
+        double totalPagosRealizados = 0;
+        for(Pagos pago: pagosRealizados){
+            totalPagosRealizados = totalPagosRealizados + pago.getCantidad();
+        };
+        return totalPagosRealizados;
     }
+    
     
     
     

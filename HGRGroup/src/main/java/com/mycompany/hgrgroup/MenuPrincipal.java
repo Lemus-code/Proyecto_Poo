@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 public class MenuPrincipal extends javax.swing.JFrame {
 
     private SharedData sharedData;
+    private String departamento;
     /**
      * Creates new form AgregarUsuario
      */
@@ -356,6 +357,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(panelDinamico, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mostrarFunciones(){
+        if(sharedData.getDepartamento().equals("Administrador")){
+            jPanelCasas.setVisible(true);
+            jPanelClientes.setVisible(true);
+            jPanelUsuarios.setVisible(true);
+        }else if(sharedData.getDepartamento().equals("Administración") || sharedData.getDepartamento().equals("Construcción") || sharedData.getDepartamento().equals("Atención al Cliente")){
+            jPanelCasas.setVisible(true);
+            jPanelClientes.setVisible(true);
+            jPanelUsuarios.setVisible(false);
+        }
+    }
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMenuActionPerformed
@@ -413,7 +425,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         // TODO add your handling code here:
-        InformacionClientes  infoClientes = new InformacionClientes(getSharedData());
+        ClientesLandingPage  infoClientes = new ClientesLandingPage(getSharedData());
         this.setVisible(false);
         infoClientes.setVisible(true);
     }//GEN-LAST:event_btnClientesActionPerformed

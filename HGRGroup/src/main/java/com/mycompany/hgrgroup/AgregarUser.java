@@ -4,6 +4,7 @@
  */
 package com.mycompany.hgrgroup;
 import Clases.*;
+import static com.mycompany.hgrgroup.ModificarUserr.validarCorreo;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.BorderLayout;
@@ -278,12 +279,12 @@ public class AgregarUser extends javax.swing.JFrame {
             long dpi;
             int edad, telefono;
             usuario = textUsuario.getText();
+            dpi = Long.parseLong(textDPI.getText());
             contraseña = textContra.getText();
             nomUsuario = textNomUser.getText();
             cargo = textCargo.getText();
             departamento = textDepar.getText();
             email = textEmail.getText();
-            dpi = Integer.parseInt(textDPI.getText());
             edad = Integer.parseInt(textEdad.getText());
             telefono = Integer.parseInt(textTelefono.getText());
 
@@ -293,21 +294,40 @@ public class AgregarUser extends javax.swing.JFrame {
                 || textEdad.getText().isEmpty() || textTelefono.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Llene todos los espacios del formulario", "Error",
                     JOptionPane.ERROR_MESSAGE);
-            } else {
-                Usuarios userr = new Usuarios(usuario, contraseña, nomUsuario, dpi, edad, cargo, telefono, departamento, email);
-                sharedData.agregarUsuarios(userr);
+            }else{
+            
+                if(textDPI.getText().length() != 13){
+                    JOptionPane.showMessageDialog(null, "El DPI debe contener 13 dígitos", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                } else{
+                         if(textTelefono.getText().length() != 8){
+                            JOptionPane.showMessageDialog(null, "El número de telefono debe tener 8 dígitos", "Error",
+                             JOptionPane.ERROR_MESSAGE);
+                            } else{
+                             if(textTelefono.getText().length() != 8){
+                            JOptionPane.showMessageDialog(null, "El número de teléfono debe contener 8 dígitos", "Error",JOptionPane.ERROR_MESSAGE);
+                            }else{
+                                if(validarCorreo(textEmail.getText())){
+                                    Usuarios userr = new Usuarios(usuario, contraseña, nomUsuario, dpi, edad, cargo, telefono, departamento, email);
+                                    sharedData.agregarUsuarios(userr);
 
-                textUsuario.setText("");
-                textContra.setText("");
-                textNomUser.setText("");
-                textCargo.setText("");
-                textDepar.setText("");
-                textEmail.setText("");
-                textDPI.setText("");
-                textEdad.setText("");
-                textTelefono.setText("");
+                                    textUsuario.setText("");
+                                    textContra.setText("");
+                                    textNomUser.setText("");
+                                    textCargo.setText("");
+                                    textDepar.setText("");
+                                    textEmail.setText("");
+                                    textDPI.setText("");
+                                    textEdad.setText("");
+                                    textTelefono.setText("");
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "Correo electrónico no válido", "Error",JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+                        }
+                }
             }
-        } catch (Exception e) {
+         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ingrese valores válidos en los campos numéricos", "Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonAgg1ActionPerformed

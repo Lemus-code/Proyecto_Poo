@@ -8,6 +8,8 @@ import Clases.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -75,7 +77,13 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
         // Activa el ajuste automático
         jTablaModificaciones.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
-    }
+        txtFieldBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscar(txtFieldBuscar.getText()); // Llama a la función buscar con el texto ingresado
+            }
+            });
+     }
 
     public SharedData getSharedData() {
         return shareData;
@@ -94,18 +102,15 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaModificaciones = new javax.swing.JTable();
-        label2 = new java.awt.Label();
         jPanel4 = new javax.swing.JPanel();
         label3 = new java.awt.Label();
         jPanelRegresar = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         jLabelRegresar = new javax.swing.JLabel();
         txtFieldBuscar = new java.awt.TextField();
-        btnBuscar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnMostrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,11 +157,6 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         }
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 1360, 260));
-
-        label2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        label2.setForeground(new java.awt.Color(255, 255, 255));
-        label2.setText("MENÚ");
-        jPanel1.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, 20));
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -218,17 +218,6 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         txtFieldBuscar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jPanel1.add(txtFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 126, 250, 23));
 
-        btnBuscar.setBackground(new java.awt.Color(0, 51, 102));
-        btnBuscar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 126, -1, -1));
-
         btnAgregar.setBackground(new java.awt.Color(0, 51, 102));
         btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -261,17 +250,6 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 90, 32));
-
-        btnMostrar.setBackground(new java.awt.Color(0, 51, 102));
-        btnMostrar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnMostrar.setText("Mostrar Todo");
-        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 85, -1, 31));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -357,38 +335,52 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         }
        
     }
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        boolean encontrado = false;
-        // Supongamos que txtFieldBuscar.getText() contiene el texto a buscar.
-        String textoBuscado = txtFieldBuscar.getText();
-        modelo.setRowCount(0); // Limpia el modelo antes de agregar nuevos resultados.
-
-        for (Casas casa : shareData.getCasas()) {
-            for (Modificaciones modificacion : casa.getModificaciones()) {
-                if (modificacion.getNombreModi().equals(textoBuscado)) {
-                    String[] row = new String[10];
-                    row[0] = casa.getNombreCliente();
-                    row[1] = casa.getCodigo();
-                    row[2] = casa.getFaseConstru();
-                    row[3] = String.valueOf(casa.getCostoBase());
-                    row[4] = String.valueOf(casa.getCostoModificaciones());
-                    row[5] = String.valueOf(casa.getModificaciones().size());
-                    row[6] = String.valueOf(casa.getCostoAdons());
-                    row[7] = String.valueOf(casa.getAddons().size());
-                    row[8] = String.valueOf(casa.getCostoFinal());
-                    row[9] = String.valueOf(casa.getFechaEntrega());
-                    modelo.addRow(row);
-                    encontrado = true;
-                }
+     private void buscar(String textoIngresado){
+         boolean encontrado = false;
+        List<Modificaciones> modificacionesEncontradas = new ArrayList<>();
+        for(int i = 0; i < shareData.getCasas().size(); i++){
+            if(shareData.getCasas().get(i).getNombreCliente() == cliente){
+                 for(int k = 0; k < shareData.getCasas().get(i).getModificaciones().size(); k++){
+                     if(textoIngresado.isEmpty()){
+                         mostrarModificaciones();
+                         return;
+                     }else if(textoIngresado.equals(shareData.getCasas().get(i).getModificaciones().get(k).getNombreModi())|| textoIngresado.equals(shareData.getCasas().get(i).getModificaciones().get(k).getEstado()) || textoIngresado.equals(shareData.getCasas().get(i).getModificaciones().get(k).getFechaInicio()) || textoIngresado.equals(shareData.getCasas().get(i).getModificaciones().get(k).getFechaFin())){
+                         modificacionesEncontradas.add(shareData.getCasas().get(i).getModificaciones().get(k));
+                         encontrado = true;
+                     }
+                 }
+                 }
             }
-        }
+       
         
-        if(encontrado != true){
-            JOptionPane.showMessageDialog(null, "Modificación Inexistente", "Error",JOptionPane.ERROR_MESSAGE);  
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
+        if (encontrado) {
+            modelo.setRowCount(0);
+           for (Modificaciones modificacionEncontrada : modificacionesEncontradas) {
+                String[] row = new String[6];
+                // Obtener la información de modificacionEncontrada
+                String nombreModi = modificacionEncontrada.getNombreModi();
+                String descrip = "<html><body style='width: 300px'>" + modificacionEncontrada.getDescrip();
+                String estado = modificacionEncontrada.getEstado();
+                String fechaInicio = String.valueOf(modificacionEncontrada.getFechaInicio());
+                String fechaFin = String.valueOf(modificacionEncontrada.getFechaFin());
+                String costoAdicional = String.valueOf(modificacionEncontrada.getCostoAdicional());
+
+                // Agregar la información a la fila
+                row[0] = nombreModi;
+                row[1] = descrip;
+                row[2] = estado;
+                row[3] = fechaInicio;
+                row[4] = fechaFin;
+                     row[5] = costoAdicional;
+
+                // Asumiendo que "modelo" es el modelo de una tabla
+                modelo.addRow(row);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron coincidencias", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+     };
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         AgregarModificacion pagModi = new AgregarModificacion(getSharedData(), cliente);
@@ -446,19 +438,12 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         };
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        // TODO add your handling code here:
-        mostrarModificaciones();
-    }//GEN-LAST:event_btnMostrarActionPerformed
-
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel1;
@@ -466,7 +451,6 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaModificaciones;
-    private java.awt.Label label2;
     private java.awt.Label label3;
     private java.awt.TextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables

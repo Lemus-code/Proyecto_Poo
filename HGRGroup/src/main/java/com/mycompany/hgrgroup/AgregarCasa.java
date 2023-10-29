@@ -232,7 +232,7 @@ public class AgregarCasa extends javax.swing.JFrame {
                     
                     Casas casa1 = new Casas(nombreCliente, codigo, faseConstru, 300000.0, 0.0, 0.0, 300000.0, list, adons, fechaEntrega2);
                     sharedData.agregarCasa(casa1);
-                    JOptionPane.showMessageDialog(null, "La casa se agregó exitosamente", "Usuario Agregado",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "La casa se agregó exitosamente", "Casa Agregada",JOptionPane.INFORMATION_MESSAGE);
                     txtFieldCliente.setText("");
                     txtFieldCodigo.setText("");
                     txtFieldFase.setText("");

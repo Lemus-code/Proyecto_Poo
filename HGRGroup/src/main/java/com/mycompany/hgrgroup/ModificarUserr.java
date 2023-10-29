@@ -6,6 +6,8 @@
 package com.mycompany.hgrgroup;
 import Clases.*;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 /**
  *
@@ -385,6 +387,15 @@ public class ModificarUserr extends javax.swing.JFrame {
         };
         
     };
+    public static boolean validarCorreo(String correo) {
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(correo);
+
+        return matcher.matches();
+    }
+    
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         try{
@@ -392,16 +403,29 @@ public class ModificarUserr extends javax.swing.JFrame {
             for(int i = 0; i < sharedData.getUsuarios().size(); i++){
                 if(getUsuario().equals(sharedData.getUsuarios().get(i).getUsuario())){
                     //Actualizamos
-                    sharedData.getUsuarios().get(i).setUsuario(textUsuario.getText());
-                    sharedData.getUsuarios().get(i).setContrasena(textContra.getText());
-                    sharedData.getUsuarios().get(i).setNombreUsuario(textNomUser.getText());
-                    sharedData.getUsuarios().get(i).setDpi(Integer.parseInt(textDPI.getText()));
-                    sharedData.getUsuarios().get(i).setEdad(Integer.parseInt(textEdad.getText()));
-                    sharedData.getUsuarios().get(i).setCargo(textCargo.getText());
-                    sharedData.getUsuarios().get(i).setTelefono(Integer.parseInt(textTelefono.getText()));
-                    sharedData.getUsuarios().get(i).setDepartamento(textDepar.getText());
-                    sharedData.getUsuarios().get(i).setEmail(textEmail.getText());
-                    System.out.println("Nombre: " + sharedData.getUsuarios().get(i).getUsuario() + "\n" + "Email: " + sharedData.getUsuarios().get(i).getEmail());
+                    if(textDPI.getText().length() != 13){
+                        JOptionPane.showMessageDialog(null, "El DPI debe contener 13 dígitos", "Error",JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        if(textTelefono.getText().length() != 8){
+                            JOptionPane.showMessageDialog(null, "El número de teléfono debe contener 8 dígitos", "Error",JOptionPane.ERROR_MESSAGE);
+                        }else{
+                            if(validarCorreo(textEmail.getText())){
+                                sharedData.getUsuarios().get(i).setUsuario(textUsuario.getText());
+                                sharedData.getUsuarios().get(i).setContrasena(textContra.getText());
+                                sharedData.getUsuarios().get(i).setNombreUsuario(textNomUser.getText());
+                                sharedData.getUsuarios().get(i).setDpi(Long.parseLong(textDPI.getText()));
+                                sharedData.getUsuarios().get(i).setEdad(Integer.parseInt(textEdad.getText()));
+                                sharedData.getUsuarios().get(i).setCargo(textCargo.getText());
+                                sharedData.getUsuarios().get(i).setTelefono(Integer.parseInt(textTelefono.getText()));
+                                sharedData.getUsuarios().get(i).setDepartamento(textDepar.getText());
+                                sharedData.getUsuarios().get(i).setEmail(textEmail.getText());
+                            }else{
+                                JOptionPane.showMessageDialog(null, "Correo electrónico no válido", "Error",JOptionPane.ERROR_MESSAGE);
+                            }
+                            
+                        }
+                    }
+                    
                 };
             };
             btnAceptar.setVisible(false);
