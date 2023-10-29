@@ -31,7 +31,6 @@ public class AgregarCasa extends javax.swing.JFrame {
         
         this.setSize(671, 475);
     }
-
     public SharedData getSharedData() {
         return sharedData;
     }

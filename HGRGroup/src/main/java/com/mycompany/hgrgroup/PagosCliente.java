@@ -26,11 +26,10 @@ public class PagosCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        label2 = new java.awt.Label();
-        label3 = new java.awt.Label();
         jButton7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -40,6 +39,10 @@ public class PagosCliente extends javax.swing.JPanel {
         textField1 = new java.awt.TextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -50,52 +53,49 @@ public class PagosCliente extends javax.swing.JPanel {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(0, 51, 102));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Generar Reporte");
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 140, 40));
 
-        label2.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        label2.setForeground(new java.awt.Color(255, 255, 255));
-        label2.setText("CLIENTES");
-        jPanel3.add(label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
-
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 16)); // NOI18N
-        label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("PAGOS");
-        jPanel3.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
-
         jButton7.setBackground(new java.awt.Color(0, 51, 102));
+        jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Regresar");
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 40));
+        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 40));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 450));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 450));
 
         jButton2.setBackground(new java.awt.Color(0, 51, 102));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Mostrar Todo");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 85, -1, 31));
 
         jButton3.setBackground(new java.awt.Color(0, 51, 102));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Agregar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 85, 81, 31));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(539, 85, 90, 31));
 
         jButton4.setBackground(new java.awt.Color(0, 51, 102));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Modificar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 122, 80, 32));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(538, 122, 90, 32));
 
         jButton5.setBackground(new java.awt.Color(0, 51, 102));
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Eliminar");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 160, 81, 32));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(539, 160, 90, 32));
 
         jButton6.setBackground(new java.awt.Color(0, 51, 102));
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Buscar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +107,6 @@ public class PagosCliente extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -135,7 +134,18 @@ public class PagosCliente extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 540, 190));
 
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 22)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("PAGO CLIENTES");
+        jPanel5.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, -1));
+        label6.getAccessibleContext().setAccessibleName("PAGO CLIENTES");
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 40));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -159,12 +169,13 @@ public class PagosCliente extends javax.swing.JPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private java.awt.Label label2;
-    private java.awt.Label label3;
+    private java.awt.Label label6;
     private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 }
