@@ -74,6 +74,7 @@ public class PagosLandingPage extends javax.swing.JFrame {
 
         // Activa el ajuste automático
         jTablaModificaciones.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        mostrarFunciones();
     }
 
     public SharedData getSharedData() {
@@ -285,6 +286,23 @@ public class PagosLandingPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void mostrarFunciones(){
+
+        if(shareData.getDepartamento().equals("Administrador")){
+            btnEliminar.setVisible(true);
+            btnAgregar.setVisible(true);
+            btnModificar.setVisible(true);
+        }else if(shareData.getDepartamento().equals("Administración") || shareData.getDepartamento().equals("Construcción")){
+            btnEliminar.setVisible(false);
+            btnAgregar.setVisible(false);
+            btnModificar.setVisible(false);
+        }else if(shareData.getDepartamento().equals("Atención al Cliente")){
+            btnEliminar.setVisible(true);
+            btnAgregar.setVisible(true);
+            btnModificar.setVisible(true);
+        };
+    }
+    
     private int getColumnIndex(String columnName) {
         return jTablaModificaciones.getColumnModel().getColumnIndex(columnName);
     }

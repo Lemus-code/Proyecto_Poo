@@ -30,6 +30,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setSize(800,520);
         transparenciaBtn();
         this.sharedData = sharedData;
+        mostrarFunciones();
+        System.out.println(sharedData.getDepartamento());
         
         
         
@@ -358,6 +360,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mostrarFunciones(){
+        String departamento;
+        for(int i = 0; i < sharedData.getUsuarios().size(); i++){
+            System.out.println(sharedData.getUser());
+            System.out.println(sharedData.getUsuarios().get(i).getUsuario());
+                if(sharedData.getUser().equals(sharedData.getUsuarios().get(i).getUsuario())){
+                    departamento = sharedData.getUsuarios().get(i).getDepartamento();
+                    sharedData.setDepartamento(departamento);
+                }
+        }
+        
         if(sharedData.getDepartamento().equals("Administrador")){
             jPanelCasas.setVisible(true);
             jPanelClientes.setVisible(true);

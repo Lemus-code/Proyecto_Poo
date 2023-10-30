@@ -4,7 +4,6 @@
  */
 package com.mycompany.hgrgroup;
 import Clases.*;
-import com.formdev.flatlaf.json.ParseException;
 import java.util.List;
 import java.util.ArrayList;
 import java.awt.BorderLayout;

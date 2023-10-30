@@ -23,7 +23,6 @@ com\mycompany\hgrgroup\AgregarUser$1.class
 com\mycompany\hgrgroup\MenuPrincipal$5.class
 com\mycompany\hgrgroup\ModificarModificacion$2.class
 com\mycompany\hgrgroup\CasasLandingPage$8.class
-com\mycompany\hgrgroup\CalendarioEntregas.class
 com\mycompany\hgrgroup\Login$2.class
 com\mycompany\hgrgroup\PagosCliente$2.class
 com\mycompany\hgrgroup\CasasLandingPage$5.class
@@ -33,7 +32,6 @@ com\mycompany\hgrgroup\ModificarAddon$1.class
 com\mycompany\hgrgroup\ModificarPago.class
 com\mycompany\hgrgroup\ClientesLandingPage$1.class
 com\mycompany\hgrgroup\AgregarCliente$2.class
-com\mycompany\hgrgroup\CalendarioEntregas$3.class
 com\mycompany\hgrgroup\ModificarCliente$2.class
 com\mycompany\hgrgroup\ModificarPago$2.class
 com\mycompany\hgrgroup\AgregarCasa$2.class
@@ -53,7 +51,6 @@ com\mycompany\hgrgroup\PagosLandingPage$5.class
 Clases\Notificacion.class
 Clases\Usuarios.class
 com\mycompany\hgrgroup\Login$1.class
-com\mycompany\hgrgroup\CalendarioEntregas$2.class
 com\mycompany\hgrgroup\CasasLandingPage$6.class
 com\mycompany\hgrgroup\PagosLandingPage$6.class
 com\mycompany\hgrgroup\ClientesLandingPage$7.class
@@ -72,6 +69,7 @@ com\mycompany\hgrgroup\AgregarCasa$1.class
 com\mycompany\hgrgroup\PagosLandingPage.class
 com\mycompany\hgrgroup\ModificarModificacion.class
 com\mycompany\hgrgroup\ModificacionesLandingPage$5.class
+com\mycompany\hgrgroup\ClientesLandingPage$10.class
 com\mycompany\hgrgroup\ModificarUserr$1.class
 com\mycompany\hgrgroup\ClientesLandingPage$6.class
 com\mycompany\hgrgroup\PagosCliente$4.class
@@ -82,7 +80,6 @@ com\mycompany\hgrgroup\PagosLandingPage$7.class
 com\mycompany\hgrgroup\Login$3.class
 com\mycompany\hgrgroup\MenuPrincipal.class
 com\mycompany\hgrgroup\ModificacionesLandingPage$3.class
-com\mycompany\hgrgroup\CasasLandingPage$9.class
 com\mycompany\hgrgroup\ModificacionesLandingPage$6.class
 com\mycompany\hgrgroup\PagosCliente$1.class
 Clases\Calendario.class
@@ -95,17 +92,14 @@ com\mycompany\hgrgroup\ModificarCliente$1.class
 com\mycompany\hgrgroup\CasasLandingPage$1.class
 com\mycompany\hgrgroup\UsuariosLandingPage$2.class
 com\mycompany\hgrgroup\MenuPrincipal$10.class
-com\mycompany\hgrgroup\CalendarioEntregas$4.class
 com\mycompany\hgrgroup\ClientesLandingPage$9.class
 com\mycompany\hgrgroup\ModificarCliente$4.class
 com\mycompany\hgrgroup\ModificarCasa$4.class
 com\mycompany\hgrgroup\PagosLandingPage$4.class
 com\mycompany\hgrgroup\ClientesLandingPage$3.class
-com\mycompany\hgrgroup\CalendarioEntregas$1.class
 com\mycompany\hgrgroup\CasasLandingPage.class
 com\mycompany\hgrgroup\PagosLandingPage$1.class
 com\mycompany\hgrgroup\AddonsLandingPage$6.class
-com\mycompany\hgrgroup\AddonsLandingPage$8.class
 com\mycompany\hgrgroup\MenuPrincipal$7.class
 com\mycompany\hgrgroup\ModificarCasa$1.class
 com\mycompany\hgrgroup\ModificarModificacion$4.class

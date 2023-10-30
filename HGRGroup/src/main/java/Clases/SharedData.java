@@ -17,6 +17,7 @@ public class SharedData {
     private List<Casas> casas;
     private List<Clientes> clientes;
     private String departamento;
+    private String usuario;
     //Constructores
     
     public SharedData() {
@@ -25,6 +26,7 @@ public class SharedData {
         this.casas = new ArrayList <>();    
         this.clientes = new ArrayList <>();    
         this.departamento = "";
+        this.usuario = "";
     }
 
     
@@ -49,6 +51,10 @@ public class SharedData {
       public String getDepartamento(){
           return departamento;
       }
+      
+       public String getUser(){
+          return usuario;
+      }
     //Setters
     public void setUsuarios(List<Usuarios> usuarios) {
         this.usuarios = usuarios;
@@ -68,6 +74,10 @@ public class SharedData {
     
     public void setDepartamento(String depa){
         this.departamento = depa;
+    };
+    
+    public void setUser(String user){
+        this.usuario = user;
     };
     
     //Métodos

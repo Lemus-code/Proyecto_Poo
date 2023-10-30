@@ -4,7 +4,6 @@
  */
 package com.mycompany.hgrgroup;
 import Clases.*;
-import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.BorderLayout;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -178,12 +177,8 @@ public class Login extends javax.swing.JFrame {
         //Verificamos si la autenticación es válida o no
         if(verificacion == true){
             //Si es válida, cambiamos de vista al menú principal
-            for(int i = 0; i < shareData.getUsuarios().size(); i++){
-                if(usuario.equals(shareData.getUsuarios().get(i).getNombreUsuario())){
-                    String departamento = shareData.getUsuarios().get(i).getDepartamento();
-                    shareData.setDepartamento(departamento);
-                }
-            }
+            shareData.setUser(usuario);
+            System.out.println(shareData.getUser());
             MenuPrincipal menu = new MenuPrincipal(getShareData());
             this.setVisible(false);
             menu.setVisible(true);

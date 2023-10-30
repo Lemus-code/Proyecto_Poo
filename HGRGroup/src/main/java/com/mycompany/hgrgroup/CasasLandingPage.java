@@ -6,11 +6,16 @@
 package com.mycompany.hgrgroup;
 import Clases.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 /**
  *
  * @author Familia
@@ -23,6 +28,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
      */
     public CasasLandingPage(SharedData data) {
         initComponents();
+         initStyles();
         this.shareData = data;
         this.modelo = new DefaultTableModel();
         transparencia(btnRegresar);
@@ -76,9 +82,15 @@ public class CasasLandingPage extends javax.swing.JFrame {
             }
         });
         jTablaCasas.setModel(modelo);
+        txtFieldBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscar(txtFieldBuscar.getText()); // Llama a la función buscar con el texto ingresado
+            }
+            });
         //Desactivar edición
         desactivarCeldas();
-        
+        mostrarFunciones();
     }
 
     public SharedData getSharedData() {
@@ -99,16 +111,16 @@ public class CasasLandingPage extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaCasas = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        label3 = new java.awt.Label();
         jPanelRegresar = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JButton();
         jLabelRegresar = new javax.swing.JLabel();
         txtFieldBuscar = new java.awt.TextField();
-        btnBuscar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
-        btnMostrar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        label6 = new java.awt.Label();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,7 +129,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        jTablaCasas.setBackground(new java.awt.Color(255, 255, 255));
         jTablaCasas.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jTablaCasas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,15 +151,10 @@ public class CasasLandingPage extends javax.swing.JFrame {
             jTablaCasas.getColumnModel().getColumn(1).setPreferredWidth(10);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 1360, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 1270, 260));
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        label3.setForeground(new java.awt.Color(255, 255, 255));
-        label3.setText("CASAS");
-        jPanel4.add(label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, 20));
 
         jPanelRegresar.setBackground(new java.awt.Color(0, 51, 102));
 
@@ -202,17 +208,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         txtFieldBuscar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         jPanel1.add(txtFieldBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 126, 250, 23));
 
-        btnBuscar.setBackground(new java.awt.Color(0, 51, 102));
-        btnBuscar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(418, 126, -1, -1));
-
         btnModificar.setBackground(new java.awt.Color(0, 51, 102));
         btnModificar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnModificar.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,7 +217,7 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 90, 32));
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 90, 32));
 
         btnEliminar.setBackground(new java.awt.Color(0, 51, 102));
         btnEliminar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -235,17 +230,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 90, 32));
 
-        btnMostrar.setBackground(new java.awt.Color(0, 51, 102));
-        btnMostrar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        btnMostrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnMostrar.setText("Mostrar Todo");
-        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(167, 85, -1, 31));
-
         btnAgregar.setBackground(new java.awt.Color(0, 51, 102));
         btnAgregar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
@@ -255,13 +239,30 @@ public class CasasLandingPage extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 90, 31));
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 120, 90, 31));
+
+        jPanel5.setBackground(new java.awt.Color(0, 51, 102));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label6.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        label6.setForeground(new java.awt.Color(255, 255, 255));
+        label6.setText("CASAS");
+        jPanel5.add(label6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 130, 60));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1500, 60));
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Buscar Casa");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,8 +271,63 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+    public void buscar(String textoIngresado){
+        boolean encontrado = false;
+        List<Casas> casasEncontradas = new ArrayList<>();
+
+        for (Casas casas : shareData.getCasas()) {
+            if (textoIngresado.isEmpty()) {
+                mostrarCasas();
+                return; // No es necesario seguir buscando si el campo de búsqueda está vacío
+            } else if (textoIngresado.equals(casas.getCodigo()) || textoIngresado.equals(casas.getNombreCliente()) || textoIngresado.equals(casas.getFaseConstru())) {
+                casasEncontradas.add(casas);
+                encontrado = true;
+            }
+        }
+
+        if (encontrado) {
+            modelo.setRowCount(0);
+            for (Casas casaEncontrada : casasEncontradas) {
+                String[] row = new String[10];
+                row[0] = casaEncontrada .getNombreCliente();
+                row[1] = casaEncontrada.getCodigo();
+                row[2] = casaEncontrada .getFaseConstru();
+                row[3] = String.valueOf(casaEncontrada .getCostoBase());
+                row[5] = String.valueOf(casaEncontrada .getCostoModificaciones());
+                row[4] = String.valueOf(casaEncontrada .getModificaciones().size());
+                row[7] = String.valueOf(casaEncontrada .getCostoAdons());
+                row[6] = String.valueOf(casaEncontrada .getAddons().size());
+                row[8] = String.valueOf(casaEncontrada .getCostoFinal());
+                row[9] = String.valueOf(casaEncontrada .getFechaEntrega());
+                modelo.addRow(row);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron coincidencias", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    public void initStyles(){
+    // Tabla
+        JTableHeader header = jTablaCasas.getTableHeader();
+        header.setForeground(new Color(31, 30, 31)); // cambiar color del texto
+        header.setBackground(new Color(255, 200, 0));
+        jTablaCasas.setBorder(null);  
+    }
+    private void mostrarFunciones(){
+
+        if(shareData.getDepartamento().equals("Administrador")){
+            btnEliminar.setVisible(true);
+            btnAgregar.setVisible(true);
+            btnModificar.setVisible(true);
+        }else if(shareData.getDepartamento().equals("Administración") || shareData.getDepartamento().equals("Atención al Cliente")){
+            btnEliminar.setVisible(false);
+            btnAgregar.setVisible(false);
+            btnModificar.setVisible(false);
+        }else if(shareData.getDepartamento().equals("Construcción")){
+            btnEliminar.setVisible(true);
+            btnAgregar.setVisible(true);
+            btnModificar.setVisible(true);
+        };
+    }
     private void mostrarModificiones(){
            int fila = jTablaCasas.getSelectedRow();
            Object valor = jTablaCasas.getValueAt(fila,0);
@@ -329,33 +385,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         };
     } 
     
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        boolean encontrado = false;
-        for(int i = 0; i < shareData.getUsuarios().size(); i++){
-            if(txtFieldBuscar.getText().equals(shareData.getCasas().get(i).getNombreCliente())){
-                modelo.setRowCount(0);
-                String [] row = new String[10];
-                row[0] = shareData.getCasas().get(i).getNombreCliente();
-                row[1] = shareData.getCasas().get(i).getCodigo();
-                row[2] = shareData.getCasas().get(i).getFaseConstru();
-                row[3] = String.valueOf(shareData.getCasas().get(i).getCostoBase());
-                row[5] = String.valueOf(shareData.getCasas().get(i).getCostoModificaciones());
-                row[4] = String.valueOf(shareData.getCasas().get(i).getModificaciones().size());
-                row[7] = String.valueOf(shareData.getCasas().get(i).getCostoAdons());
-                row[6] = String.valueOf(shareData.getCasas().get(i).getAddons().size());
-                row[8] = String.valueOf(shareData.getCasas().get(i).getCostoFinal());
-                row[9] = String.valueOf(shareData.getCasas().get(i).getFechaEntrega());
-                modelo.addRow(row);
-                encontrado = true;
-            }
-        };
-        
-        if(encontrado != true){
-            JOptionPane.showMessageDialog(null, "Usuario Inexistente", "Error",JOptionPane.ERROR_MESSAGE);  
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
     private void btnRegresarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegresarMouseEntered
         Color colorRgb= new Color(0, 102, 204);
         jPanelRegresar.setBackground(colorRgb);
@@ -403,11 +432,6 @@ public class CasasLandingPage extends javax.swing.JFrame {
         };
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        // TODO add your handling code here:
-        mostrarCasas();
-    }//GEN-LAST:event_btnMostrarActionPerformed
-
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
         AgregarCasa pageCasa = new AgregarCasa(getSharedData());
@@ -419,18 +443,18 @@ public class CasasLandingPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
-    private javax.swing.JButton btnMostrar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelRegresar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTablaCasas;
-    private java.awt.Label label3;
+    private java.awt.Label label6;
     private java.awt.TextField txtFieldBuscar;
     // End of variables declaration//GEN-END:variables
 }

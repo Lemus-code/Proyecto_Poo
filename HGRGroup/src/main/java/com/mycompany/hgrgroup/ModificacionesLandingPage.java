@@ -83,6 +83,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
                 buscar(txtFieldBuscar.getText()); // Llama a la función buscar con el texto ingresado
             }
             });
+        mostrarFunciones();
      }
 
     public SharedData getSharedData() {
@@ -111,6 +112,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -251,6 +253,11 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 90, 32));
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Buscar Modificación");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -264,6 +271,23 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void mostrarFunciones(){
+
+        if(shareData.getDepartamento().equals("Administrador")){
+            btnEliminar.setVisible(true);
+            btnAgregar.setVisible(true);
+            btnModificar.setVisible(true);
+        }else if(shareData.getDepartamento().equals("Administración") || shareData.getDepartamento().equals("Atención al Cliente")){
+            btnEliminar.setVisible(false);
+            btnAgregar.setVisible(false);
+            btnModificar.setVisible(false);
+        }else if(shareData.getDepartamento().equals("Construcción")){
+            btnEliminar.setVisible(true);
+            btnAgregar.setVisible(true);
+            btnModificar.setVisible(true);
+        };
+    }
+    
     private int getColumnIndex(String columnName) {
         return jTablaModificaciones.getColumnModel().getColumnIndex(columnName);
     }
@@ -445,6 +469,7 @@ public class ModificacionesLandingPage extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;

@@ -6,8 +6,12 @@
 package com.mycompany.hgrgroup;
 import Clases.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -73,9 +77,15 @@ public class ClientesLandingPage extends javax.swing.JFrame {
             }
         });
         jTablaClientes.setModel(modelo);
+        txtFieldBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscar(txtFieldBuscar.getText()); // Llama a la función buscar con el texto ingresado
+            }
+            });
         //Desactivar edición
         desactivarCeldas();
-        
+        mostrarFunciones();
     }
 
     public SharedData getSharedData() {
@@ -267,7 +277,60 @@ public class ClientesLandingPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+    private void buscar(String textoIngresado) {
+        boolean encontrado = false;
+        List<Clientes> clientesEncontrados = new ArrayList<>();
+
+        for (Clientes cliente : shareData.getClientes()) {
+            if (textoIngresado.isEmpty()) {
+                mostrarClientes();
+                return; // No es necesario seguir buscando si el campo de búsqueda está vacío
+            } else if (textoIngresado.equals(cliente.getNombreCliente()) || textoIngresado.equals(cliente.getNumTelefono()) || textoIngresado.equals(String.valueOf(cliente.getEmail()))) {
+                clientesEncontrados.add(cliente);
+                encontrado = true;
+            }
+        }
+
+        if (encontrado) {
+            modelo.setRowCount(0);
+            for (Clientes clienteEncontrado : clientesEncontrados) {
+                
+                String [] row = new String[7];
+                row[0] = clienteEncontrado.getNombreCliente();
+                row[1] = clienteEncontrado.getEmail();
+                row[2] = String.valueOf(clienteEncontrado.getNumTelefono());
+                
+               
+                row[3] = clienteEncontrado.getCasasAsocionadas().getCodigo();
+                row[4] = String.valueOf(clienteEncontrado.totalPagosRealizados());
+                
+                
+                row[5] = String.valueOf(clienteEncontrado.getSaldoPendiente());
+                row[6] = String.valueOf(clienteEncontrado.getPagoTotal());
+                
+                
+                modelo.addRow(row);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron coincidencias", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void mostrarFunciones(){
+
+        if(shareData.getDepartamento().equals("Administrador")){
+            btnEliminar.setVisible(true);
+            btnAgregar.setVisible(true);
+            btnModificar.setVisible(true);
+        }else if(shareData.getDepartamento().equals("Administración") || shareData.getDepartamento().equals("Construcción")){
+            btnEliminar.setVisible(false);
+            btnAgregar.setVisible(false);
+            btnModificar.setVisible(false);
+        }else if(shareData.getDepartamento().equals("Atención al Cliente")){
+            btnEliminar.setVisible(true);
+            btnAgregar.setVisible(true);
+            btnModificar.setVisible(true);
+        };
+    }
     
     private void mostrarPagos(){
            int fila = jTablaClientes.getSelectedRow();
